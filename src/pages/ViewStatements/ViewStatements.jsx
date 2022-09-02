@@ -20,14 +20,14 @@ function ViewStatements() {
              .then(res => res.json())
              
              setStatement(prevState =>({
-            //    ...prevState,
+               ...prevState,
                statements
              }))
             //    setStatement({statements})
-           console.log(statements)
     
            
            }
+           
         getAppData()
     
       },[])
@@ -37,14 +37,11 @@ function ViewStatements() {
     <>
     
     <Header />
-    {/* <div>viewStatements<Link to="/">home</Link></div><Link to="/createproposal">create</Link> */}
-     <div>
-       
-       {statement.map((s,i) => (
-       <div> {s.fees}</div>
-       ))}
-     
-       </div>
+   {/* {console.log(statement.statements)}   */}
+   {statement.statements ?
+    statement.statements.map((s,i) => (
+    <div>{s.statementName}</div>
+   )) : <div>nothing</div>}
     </>
   )
 }
