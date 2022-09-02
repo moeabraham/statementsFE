@@ -1,3 +1,13 @@
+# Statement Analyzer for fintech payment processing
+
+# tech used so far
+
+- Reactjs
+- nodeJS/express
+- mongodb
+- react-icons
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
