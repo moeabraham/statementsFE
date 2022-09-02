@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../../components/Header/Header';
 import { Link } from "react-router-dom";
 import {useEffect, useState} from "react";
-
+import styles from "./ViewStatements.module.css";
 function ViewStatements() {
 
     const [statement, setStatement] = useState({
@@ -38,10 +38,14 @@ function ViewStatements() {
     
     <Header />
    {/* {console.log(statement.statements)}   */}
+   <section className={styles.container}>
+    <article className={styles.cards}>
    {statement.statements ?
     statement.statements.map((s,i) => (
-    <div>{s.statementName}</div>
+    <figure className={styles.card} key={i}><h3> {s.statementName}</h3></figure>
    )) : <div>nothing</div>}
+   </article>
+   </section>
     </>
   )
 }
