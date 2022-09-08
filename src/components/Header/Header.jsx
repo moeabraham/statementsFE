@@ -15,7 +15,7 @@ function Header() {
         setHamburgerMenu(!hamburgerMenu)
     }
   return (
-    <header>
+    <header className={styles.header}>
        <Link to="/" className={styles.display} > <figure className={styles.logoBtn}>
              <img src={LOGO} alt="logo"  />
         </figure></ Link >

@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
 function LandingPage() {
   return (
     <div>
-        <Link to='viewstatements'>
+        <Link className={styles.container} to='viewstatements'>
         <article className={styles.viewArticle}>
             <figure className={styles.figCard}>
                 <h1 className={styles.headers}>View All my Statements</h1>
@@ -23,7 +23,7 @@ function LandingPage() {
         <div>
 
         </div>
-        <Link to='createproposal'>
+        <Link className={styles.container} to='createproposal'>
         <article className={styles.viewArticle}>
             <figure className={styles.figCard}>
                 <h1 className={styles.headers}>Create a new proposal</h1>
