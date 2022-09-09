@@ -26,19 +26,26 @@ function App() {
   //   editMode: false
   // })
   const [statement, setStatement] = useState({
-    statements: [{
-      statementName: "",volume: 0,fees:0,transactionsNumber: "",  debitPercentage:"",  debitFees:"",creditPercentage:"",creditFees:"", basisPts:"",transactionFee:"",merchantDebitFees: "",debitValue:"",creditValue:"",
 
-      merchantCreditFees:"",
-  
-  
+    statements: [{
+      statementName: "",volume: "",fees:"",transactionsNumber: "",
+       debitCardVolume:"", debitPercentage:"",  debitInterchange:"",merchantDebitFees: "",
+       creditPercentage:"",creditInterchange:"",creditCardVolume:"",  merchantCreditFees:"",
+       basisPts:"",transactionFee:"",
+       debitValue:"",creditValue:"",
+
+    
   
     }],
 
     newStatement:{
-      statementName: "", volume: 0,fees:0,transactionsNumber: "",  debitPercentage:"",  debitFees:"0.006",creditPercentage:"",creditFees:"0.0190", basisPts:"0.0020 ",transactionFee:"0.10",merchantDebitFees: "",debitValue:"",creditValue:"",
+      statementName: "", volume: "",fees:"",transactionsNumber: "",
+      debitCardVolume:"",  debitPercentage:"",  debitInterchange:"0.006",merchantDebitFees: "",
+      creditPercentage:"",creditInterchange:"0.0190",creditCardVolume:"",merchantCreditFees:"",
 
-      merchantCreditFees:"",
+      basisPts:"0.0020 ",transactionFee:"0.10",
+      debitValue:"",creditValue:"",
+      
     },
     showStatement:[],
 
@@ -72,13 +79,18 @@ function App() {
 
 
   function handleChange(e){
-console.log(statement.newStatement.currentFee)
+    // let debitCardVolume = statement.newStatement.volume *statement.newStatement.debitPercentage
+// console.log(statement.newStatement.currentFee)
     // console.log(e.target.value)
+    // let debitCardVolume= statement.newStatement.volume * statement.newStatement.debitPercentage;
+
     setStatement(prevState => ({
         ...prevState,
         newStatement:{
             ...prevState.newStatement,
             [e.target.name] : e.target.value,
+
+            // debitPercentage: volume * debitPercentage
             // transactionsNumber: (parseInt(statement.newStatement.currentFee,10)  * parseInt(statement.newStatement.volume, 10) )
 
         }
@@ -104,7 +116,9 @@ async function handleShowStatement(id){
 console.log(statements)
 setStatement(prevState=> ({
     ...prevState,
-    showStatement:statements
+    // statements:[...statements,statements],
+    showStatement:statements,
+    
 }))
 
 }

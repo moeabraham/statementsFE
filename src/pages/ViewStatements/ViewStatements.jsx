@@ -53,18 +53,28 @@ function ViewStatements(props) {
      {props.statement.statements ?
      
     props.statement.statements.map((s,i) => (
+        <>
         // 
-    <Link to={`/viewStatements/${s._id}`} className={styles.statementLink}><figure className={styles.card} key={i} onClick={()=> handleShowStatement(s._id)}>
-        <article className={styles.innerCard}><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
-        <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
-        <article className={styles.innerCard}> <h3>Transactions Numbers: </h3><h3>{s.transactionsNumber}</h3> </article>   
-        <article className={styles.innerCard}><h3>Current Fee: </h3> <h3>{s.fees}</h3> </article>  
-        <div className={styles.icons}>
-            <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
-            <div onClick={()=> handleDelete(s._id)}><FcRemoveImage style={{width:"50px", height:"30px"}}/></div> 
-        </div>
-    </figure></Link>
-   )) : <div>nothing</div>}
+    <Link to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i} >
+        <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
+                <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
+                <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
+                <article className={styles.innerCard}> <h3>Transactions Numbers: </h3><h3>{s.transactionsNumber}</h3> </article>   
+                <article className={styles.innerCard}><h3>Current Fee: </h3> <h3>{s.fees}</h3> </article>  
+                
+        </figure>
+        
+    </Link>
+
+        <div className={styles.icons} key={s._id}>
+                    <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
+                    <div onClick={()=> handleDelete(s._id)} ><FcRemoveImage style={{width:"50px", height:"30px"}}/></div> 
+                </div>
+
+
+    
+                </>
+                )) : <div>nothing</div>}
 
    </article>
    </section>
@@ -72,7 +82,7 @@ function ViewStatements(props) {
   )
 }
 
-export default ViewStatements
+export default ViewStatements;
 
 
 

@@ -64,13 +64,13 @@ function CreateProposal(props) {
            statements: editedStatements,
             editMode: false,
             newStatement:{
-                statementName:"",
-                fees:"",
-                volume:"",
-                transactionsNumber:"",
-                debitPercentage:"",  debitFees:"0.006",creditPercentage:"",creditFees:"0.0190", basisPts:"0.0020 ",transactionFee:"0.10",merchantDebitFees: "",
-
-                merchantCreditFees:"",
+                statementName: "",volume: "",fees:"",transactionsNumber: "",
+                 debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
+                 creditPercentage:"",creditInterchange:"",creditCardVolume:"",merchantCreditFees:"",
+                 basisPts:"",transactionFee:"",
+                 debitValue:"",creditValue:""
+          
+                
             }
         }))
        } catch(err){
@@ -91,15 +91,13 @@ function CreateProposal(props) {
                 setStatement({
                     statements:[...statement.statements, statementAdd],
                     newStatement:{
-                        statementName:"",
-                        volume:"",
-                        fees:"",
-                        transactionsNumber:"",    
-                        debitPercentage:"",  debitFees:"0.006",creditPercentage:"",creditFees:"0.0190", basisPts:"0.0020 ",transactionFee:"0.10",merchantDebitFees: "",
+                        statementName: "",volume: "",fees:"",transactionsNumber: "",
+                         debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
+                         creditPercentage:"",creditInterchange:"",creditCardVolume:"",  merchantCreditFees:"",
 
-                        merchantCreditFees:"",
-                    
-        
+                      
+                        basisPts:"",transactionFee:"",    
+                        debitValue:"",creditValue:"",
                     }
                 })
 
@@ -133,28 +131,28 @@ function CreateProposal(props) {
             </label>
             <label className={styles.labels}>
                 transaction number
-                <input className={styles.inputs} type="number" name="transactionsNumber"  onChange={handleChange}   value={statement.newStatement.transactionsNumber} />
+                <input className={styles.inputs} type="text" name="transactionsNumber"  onChange={handleChange}   value={statement.newStatement.transactionsNumber} />
             </label>
             <label className={styles.labels}>
             Debit Card Transaction %
-                <input className={styles.inputs} type="number" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
+                <input className={styles.inputs} type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
             </label>
             <label className={styles.labels}>
-            Debit Fees
-                <input className={styles.inputs} type="text" name="debitFees" onChange={handleChange}  value={statement.newStatement.debitFees}  />
-                <span>debit card% * total volume<input value={statement.newStatement.volume} onChange={handleChange} /></span>
-                <span>MDB<input value={statement.newStatement.merchantDebitFees} onChange={handleChange} /></span>
+            Debit Interchange
+                <input className={styles.inputs} type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
+                <span>debit card% volume<input value={statement.newStatement.debitCardVolume} name="debitCardVolume"onChange={handleChange} /></span>
+                <span>MDF<input value={statement.newStatement.merchantDebitFees} onChange={handleChange} name="merchantDebitFees" /> </span>
             </label>
             <label className={styles.labels}>
             Credit Card Transaction %
-                <input className={styles.inputs} type="number" name="creditPercentage" onChange={handleChange}  value={statement.newStatement.creditPercentage}  />
-                <span>credit card% * total volume<input value={statement.newStatement.volume} onChange={handleChange} /></span>
-                <span>MDB<input value={statement.newStatement.merchantCreditFees} onChange={handleChange} /></span>
+                <input className={styles.inputs} type="text" name="creditPercentage" onChange={handleChange}  value={statement.newStatement.creditPercentage}  />
+                <span>credit card% * total volume<input value={statement.newStatement.creditCardVolume} name="creditCardVolume" onChange={handleChange} /></span>
+                <span>MCF<input value={statement.newStatement.merchantCreditFees} name="merchantCreditFees" onChange={handleChange} /></span>
 
             </label>
             <label className={styles.labels}>
-                Credit Fees
-                <input  className={styles.inputs} type="text" name="creditFees"  onChange={handleChange} value={statement.newStatement.creditFees} />
+                Credit Interchange
+                <input  className={styles.inputs} type="text" name="creditInterchange"  onChange={handleChange} value={statement.newStatement.creditFees} />
             </label>
             <label className={styles.labels}>
                 Basis Pts

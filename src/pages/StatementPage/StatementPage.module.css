@@ -37,7 +37,9 @@
 }
 .mainCard{
     display:flex;
-    flex-direction: column;;
+    flex-direction: column;
+    border:1px solid red;
+    
 }
 /* .card{
     border:1px  rgb(97, 228, 88);
