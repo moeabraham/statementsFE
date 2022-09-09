@@ -15,13 +15,14 @@ function CreateProposal(props) {
         // console.log(props.statement.statements)
         // const{statementName,volume, fees, transactionsNumber} = props.statement.newStatement
         // console.log(props.statement.newStatement)
-        const{statement, setStatement, handleEdit, handleDelete, handleChange} =  props
+        const{statement, setStatement, handleEdit, handleDelete, handleChange, userState, setUserState, handleShowStatement} =  props
         const{ newStatement, statements, editMode, } = statement
         // console.log(statement.statements[0]._id)
         // console.log(props.statement..fees)
         // const{_id} = props.statement.statements
         // console.log(_id)
-      
+    //   console.log(userState)
+    //   console.log(uid)
 // const [mdf, setMdf] = useState({
 //     value: statement.newStatement.volume * statement.newStatement.debitFees
 // })
@@ -46,8 +47,11 @@ function CreateProposal(props) {
    
 
   async  function handleSubmit(e){
+
     e.preventDefault()
-    console.log(statement)
+    const {uid} = userState
+
+    console.log(statements)
     if(editMode){
         const{statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees} =statement.newStatement
        try{
@@ -85,9 +89,9 @@ function CreateProposal(props) {
                 headers:{
                     "Content-type" : "Application/json"
                 },
-                body:JSON.stringify(statement.newStatement)
+                body:JSON.stringify({...statement.newStatement, uid})
             }).then(res=>res.json())
-
+            console.log(statementAdd)
                 setStatement({
                     statements:[...statement.statements, statementAdd],
                     newStatement:{
@@ -134,20 +138,20 @@ function CreateProposal(props) {
                 <input className={styles.inputs} type="text" name="transactionsNumber"  onChange={handleChange}   value={statement.newStatement.transactionsNumber} />
             </label>
             <label className={styles.labels}>
-            Debit Card Transaction %
+            Debit Card Transaction Percentage
                 <input className={styles.inputs} type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
             </label>
             <label className={styles.labels}>
             Debit Interchange
                 <input className={styles.inputs} type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
-                <span>debit card% volume<input value={statement.newStatement.debitCardVolume} name="debitCardVolume"onChange={handleChange} /></span>
-                <span>MDF<input value={statement.newStatement.merchantDebitFees} onChange={handleChange} name="merchantDebitFees" /> </span>
+                {/* <span>debit card% volume<input value={statement.newStatement.debitCardVolume} type="text" name="debitCardVolume" onChange={handleChange} /></span> */}
+                {/* <span>MDF<input value={statement.newStatement.merchantDebitFees} onChange={handleChange} name="merchantDebitFees" /> </span> */}
             </label>
             <label className={styles.labels}>
-            Credit Card Transaction %
+            Credit Card Transaction Percentage
                 <input className={styles.inputs} type="text" name="creditPercentage" onChange={handleChange}  value={statement.newStatement.creditPercentage}  />
-                <span>credit card% * total volume<input value={statement.newStatement.creditCardVolume} name="creditCardVolume" onChange={handleChange} /></span>
-                <span>MCF<input value={statement.newStatement.merchantCreditFees} name="merchantCreditFees" onChange={handleChange} /></span>
+                {/* <span>credit card% * total volume<input value={statement.newStatement.creditCardVolume} name="creditCardVolume" onChange={handleChange} /></span> */}
+                {/* <span>MCF<input value={statement.newStatement.merchantCreditFees} name="merchantCreditFees" onChange={handleChange} /></span> */}
 
             </label>
             <label className={styles.labels}>
@@ -155,7 +159,7 @@ function CreateProposal(props) {
                 <input  className={styles.inputs} type="text" name="creditInterchange"  onChange={handleChange} value={statement.newStatement.creditFees} />
             </label>
             <label className={styles.labels}>
-                Basis Pts
+                Basis Pts <h7>(format:0.10 ...)</h7>:
                 <input className={styles.inputs} type="text" name="basisPts" onChange={handleChange}  value={statement.newStatement.basisPts}   />
             </label>
             <label className={styles.labels}>
@@ -184,16 +188,34 @@ function CreateProposal(props) {
         {props.statement.statements ?
      
 statement.statements.map((s,i) => (
-    <figure className={styles.card} key={i}>
-        <article className={styles.innerCard}><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
-        <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
-        <article className={styles.innerCard}> <h3>Transactions Numbers: </h3><h3>{s.transactionsNumber + 1000}</h3> </article>   
-        <article className={styles.innerCard}><h3>Current Fee: </h3> <h3>{s.fees}</h3> </article>  
-        <div className={styles.icons}>
-            <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
-            <div onClick={()=> handleDelete(s._id)}><FcRemoveImage style={{width:"50px", height:"30px"}}/></div> 
-        </div>
+
+    // <figure className={styles.card} key={i}>
+    //     <article className={styles.innerCard}><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
+    //     <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
+    //     <article className={styles.innerCard}> <h3>Transactions Numbers: </h3><h3>{s.transactionsNumber + 1000}</h3> </article>   
+    //     <article className={styles.innerCard}><h3>Current Fee: </h3> <h3>{s.fees}</h3> </article>  
+    //     <div className={styles.icons}>
+    //         <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
+    //         <div onClick={()=> handleDelete(s._id)}><FcRemoveImage style={{width:"50px", height:"30px"}}/></div> 
+    //     </div>
+    // </figure>
+
+
+    <Link to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i} >
+    <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
+            <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
+            <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
+            <article className={styles.innerCard}> <h3>Transactions Numbers: </h3><h3>{s.transactionsNumber}</h3> </article>   
+            <article className={styles.innerCard}><h3>Current Fee: </h3> <h3>{s.fees}</h3> </article>  
+            
     </figure>
+    
+</Link>
+
+
+
+
+
     )) : <div>nothing</div>}
         </section>
 

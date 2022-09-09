@@ -38,8 +38,36 @@
 .mainCard{
     display:flex;
     flex-direction: column;
+    width:100vw;
     border:1px solid red;
     
+}
+
+.customerProposal{
+    display:flex;
+    flex-direction: column;
+    border:1px solid blue;
+    width:80%;
+    margin: 0 auto;
+    gap: 1rem;
+}
+.green{
+    display:flex;
+    font-weight:500;
+    font-size: large;
+    color:green;
+    background-color: green;
+    height:70%;
+    color:white;
+    align-items:center;
+
+}
+
+.red{
+    font-weight:500;
+    font-size: large;
+    color:red;
+
 }
 /* .card{
     border:1px  rgb(97, 228, 88);

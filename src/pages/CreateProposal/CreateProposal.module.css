@@ -98,3 +98,8 @@ gap:1rem;
 .icons{
     display:flex;
 }
+
+.statementLink{
+    display:flex;
+    flex-direction:column;
+    }

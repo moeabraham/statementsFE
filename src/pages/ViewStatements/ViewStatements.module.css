@@ -86,3 +86,9 @@ h3{
     /* background-color:red; */
     height:50px;
 }
+
+.wholeCards{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}

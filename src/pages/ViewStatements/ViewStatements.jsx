@@ -14,6 +14,8 @@ function ViewStatements(props) {
 //    console.log(props.statement)
       const {statement, handleEdit, handleDelete, handleShowStatement} = props
     //   const {id} = useParams()
+
+    // console.log(statement)
     //   console.log(id)
     //   const{statementName, _id} = props.statement.statements
     //   console.log(statementName)
@@ -54,7 +56,7 @@ function ViewStatements(props) {
      
     props.statement.statements.map((s,i) => (
         <>
-        // 
+       <section className={styles.wholeCards}>
     <Link to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i} >
         <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
                 <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
@@ -72,7 +74,7 @@ function ViewStatements(props) {
                 </div>
 
 
-    
+                </section>
                 </>
                 )) : <div>nothing</div>}
 

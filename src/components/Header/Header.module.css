@@ -109,3 +109,21 @@ nav > div>  svg {
     cursor:pointer;
 
 }
+
+
+.firebaseInfo{
+    display:flex;
+
+    justify-content: space-between;
+margin-left:auto;
+}
+.firebaseContent{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+    margin-left:auto;
+}
+li{
+   list-style: none;
+}

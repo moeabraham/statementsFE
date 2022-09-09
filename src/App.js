@@ -3,6 +3,7 @@ import  {useState, useEffect} from "react";
 // import LandingPage from "./components/LandingPage/LandingPage";
 import Landing from "./pages/LandingPage/LandingPage";
 import Header from './components/Header/Header'
+import {auth} from "./services/firebase"
 
 import ViewStatements from "./pages/ViewStatements/ViewStatements";
 import CreateProposal from "./pages/CreateProposal/CreateProposal";
@@ -40,10 +41,10 @@ function App() {
 
     newStatement:{
       statementName: "", volume: "",fees:"",transactionsNumber: "",
-      debitCardVolume:"",  debitPercentage:"",  debitInterchange:"0.006",merchantDebitFees: "",
+      debitCardVolume:"",  debitPercentage:"",  debitInterchange:"0.06",merchantDebitFees: "",
       creditPercentage:"",creditInterchange:"0.0190",creditCardVolume:"",merchantCreditFees:"",
 
-      basisPts:"0.0020 ",transactionFee:"0.10",
+      basisPts:"0.20 ",transactionFee:"0.10",
       debitValue:"",creditValue:"",
       
     },
@@ -52,7 +53,10 @@ function App() {
     editMode:false
 
   })
-
+const [userState, setUserState]= useState({
+  user: null
+})
+console.log(userState.user)
 // console.log(statement)
 
   
@@ -71,6 +75,7 @@ function App() {
 
     // console.log(statement)
     getAppData()
+    auth.onAuthStateChanged(user => setUserState( { user}))
 
   },[])
 
@@ -79,24 +84,24 @@ function App() {
 
 
   function handleChange(e){
-    // let debitCardVolume = statement.newStatement.volume *statement.newStatement.debitPercentage
-// console.log(statement.newStatement.currentFee)
+    let debitCardVolume = statement.newStatement.volume *statement.newStatement.debitPercentage
+console.log(statement.newStatement.currentFee)
     // console.log(e.target.value)
     // let debitCardVolume= statement.newStatement.volume * statement.newStatement.debitPercentage;
-
+console.log(parseInt(statement.newStatement.debitPercentage, 10))
     setStatement(prevState => ({
         ...prevState,
         newStatement:{
             ...prevState.newStatement,
             [e.target.name] : e.target.value,
-
-            // debitPercentage: volume * debitPercentage
-            // transactionsNumber: (parseInt(statement.newStatement.currentFee,10)  * parseInt(statement.newStatement.volume, 10) )
+          // debitCardVolume: debitCardVolume,
+            // debitPercentage: volume * debitPercentage,
+            // debitCardVolume: parseInt(statement.newStatement.debitPercentage,10)  * parseInt(statement.newStatement.volume,10)
 
         }
     }))
 
-    
+    console.log(statement.statements.debitCardVolume)
 
     // [e.target.name] = e.target.value
 }
@@ -113,7 +118,7 @@ function App() {
 async function handleShowStatement(id){
   const statements = await fetch(`http://localhost:3001/api/statements/${id}`)
   .then(res=> res.json())
-console.log(statements)
+// console.log(statements)
 setStatement(prevState=> ({
     ...prevState,
     // statements:[...statements,statements],
@@ -138,7 +143,7 @@ async function handleDelete(id){
 
     <>
     <div>  
-            <Header /> 
+            <Header userState={userState} setUserState={setUserState} /> 
     </div>
 
 
@@ -154,9 +159,9 @@ async function handleDelete(id){
          <Routes >
           <Route  path="/" element={<Landing />} />
           {/*statement={statement} setStatement={setStatement} */}
-          <Route  path="/ViewStatements" element={<ViewStatements handleShowStatement={handleShowStatement}    statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange}/>} />
-          <Route  path="/ViewStatements/:id" element={<StatementPage handleShowStatement={handleShowStatement}  statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange}/>} />
-          <Route  path="/CreateProposal" element={<CreateProposal statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange} />} />
+          <Route  path="/ViewStatements" element={<ViewStatements userState={userState} setUserState={setUserState}  handleShowStatement={handleShowStatement}    statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange}/>} />
+          <Route  path="/ViewStatements/:id" handleShowStatement={handleShowStatement} element={<StatementPage userState={userState} setUserState={setUserState}  handleShowStatement={handleShowStatement}  statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange}/>} />
+          <Route  path="/CreateProposal" element={<CreateProposal userState={userState} setUserState={setUserState} statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange} />} />
         
         </Routes>
         {/* <Header />
