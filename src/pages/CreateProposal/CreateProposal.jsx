@@ -116,14 +116,17 @@ function CreateProposal(props) {
   return (
     <>  
         {/* <Header /> */}
-        <Link to="/ViewStatements"><div className={styles.links}><FcBriefcase style={{height:"40px",width:"50px"}} /></div></Link>
+        <section className={styles.upperPage}>
 
-        <h1> Create wazaaaap</h1>
+        <Link  className={styles.statementLink} to="/ViewStatements"><div ><FcBriefcase className={styles.links}  /> View Statements</div></Link>
+        <h1 className={styles.pageTitle}> Create a proposal</h1>
+
+        </section>
         <section className={styles.formPage}>
         <form className={styles.form} onSubmit={handleSubmit}>
             <label className={styles.labels}>
             Name
-                <input className={styles.inputs} type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+                <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
             </label>
             <label className={styles.labels}>
                 total volume
@@ -201,7 +204,7 @@ statement.statements.map((s,i) => (
     // </figure>
 
 
-    <Link to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i} >
+    <Link handleShowStatement={handleShowStatement} to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i}  >
     <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
             <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
             <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>

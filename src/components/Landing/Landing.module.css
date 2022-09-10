@@ -32,6 +32,7 @@
     justify-content: center;
     font-family: 'Poppins', sans-serif;
 
+
 }
 .viewStatements{
     display:flex;
@@ -138,7 +139,10 @@
     padding:auto; 
     justify-content: center;
     align-items:center;
+    align-self:center;
     background-color:rgba(244, 245, 244, 0.597);
     font-family: 'Poppins', sans-serif;
+    border-radius:2rem;
+    gap:2rem;
 
 } 

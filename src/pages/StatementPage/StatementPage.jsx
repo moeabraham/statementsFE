@@ -49,7 +49,7 @@ function StatementPage(props) {
   {JSON.stringify(showStatement, null, 2)}
 </pre> */}
 
-<h1>{props.statement.showStatement.statementName}</h1>
+<h1 className={styles.headerTitle}>{props.statement.showStatement.statementName}</h1>
 {/* <section className={styles.container}>
     <article className={styles.cards}>
             <h1> statementName: {showStatement.statementName} </h1>
@@ -59,33 +59,44 @@ function StatementPage(props) {
     </article>
 </section>
  */}
+ <section className={styles.container}>
 <figure className={styles.mainCard}  >
-        <article className={styles.innerCard}><h3 className={styles.fonts}>Statement Name : {showStatement.statementName}</h3></article>
-        <article className={styles.innerCard} > <h3>Total Volume: </h3><h3>{showStatement.volume}$</h3></article>
-        <article className={styles.innerCard}> <h3>Transactions Numbers: </h3><h3>{showStatement.transactionsNumber}</h3> </article>   
-        <article className={styles.innerCard}><h3>Current Fee: </h3> <h3>{showStatement.fees}%</h3> </article>  
+    <section className={styles.half}>
+    {/* <section className={styles.half}> */}
+        <article className={styles.innerCard}><h4 className={styles.fonts}>Statement Name :</h4> <h4> {showStatement.statementName}</h4></article>
+        <article className={styles.innerCard} > <h4 className={styles.fonts}>Total Volume: </h4><h4>{showStatement.volume}$</h4></article>
+        <article className={styles.innerCard}> <h4 className={styles.fonts}>Transactions Numbers: </h4><h4>{showStatement.transactionsNumber}</h4> </article>   
+        <article className={styles.innerCard}><h4 className={styles.fonts}>Current Fee: </h4> <h4>{showStatement.fees}%</h4> </article>  
 
-        <article className={styles.innerCard}><h3 className={styles.fonts}>Debit Interchange : {showStatement.debitInterchange}%</h3></article>
-        <article className={styles.innerCard}><h3 className={styles.fonts}>Debit Volume : { (showStatement.debitPercentage/100) * showStatement.volume}$</h3></article>
+        <article className={styles.innerCard}><h4 className={styles.fonts}>Debit Interchange :</h4><h4> {showStatement.debitInterchange}% </h4></article>
+        <article className={styles.innerCard}><h4 className={styles.fonts}>Debit Volume :</h4><h4> { (showStatement.debitPercentage/100) * showStatement.volume}$</h4></article>
         {/* <article className={styles.innerCard}><h3 className={styles.fonts}>MDF : { (((showStatement.debitInterChange)/(100)) * (showStatement.volume))}$</h3></article> */}
-        <article className={styles.innerCard}><h3 className={styles.fonts}>MDF : { merchantDebitFees.toFixed(2)}$</h3></article>
+        <article className={styles.innerCard}><h4 className={styles.fonts}>MDF :</h4><h4> { merchantDebitFees.toFixed(2)}$</h4></article>
+    {/* </section> */}
+    {/* <section className={styles.half}> */}
 
-        <article className={styles.innerCard} > <h3>Credit Interchange: </h3><h3>{showStatement.creditInterchange}%</h3></article>
+        <article className={styles.innerCard} > <h4>Credit Interchange: </h4><h4>{showStatement.creditInterchange}%</h4></article>
         {/* volume - debit volume */}  
-        <article className={styles.innerCard} > <h3>Credit Volume:  </h3><h3>{((showStatement.creditPercentage)/100) * showStatement.volume} $</h3></article>
+        <article className={styles.innerCard} > <h4>Credit Volume:  </h4><h4>{((showStatement.creditPercentage)/100) * showStatement.volume} $</h4></article>
         {/* <article className={styles.innerCard}><h3 className={styles.fonts}>MCF : { ((showStatement.creditPercentage)/100) * showStatement.volume}$</h3></article> */}
-        <article className={styles.innerCard}><h3 className={styles.fonts}>MCF : {merchantCreditFees.toFixed(2)}$</h3></article>
+        <article className={styles.innerCard}><h4 className={styles.fonts}>MCF :</h4><h4> {merchantCreditFees.toFixed(2)}$</h4></article>
 
-        <article className={styles.innerCard}> <h3>Basis Points </h3><h3>{(((showStatement.basisPts) * (showStatement.volume))/100) }$</h3> </article>   
-        <article className={styles.innerCard}><h3>Transaction Fee: </h3> <h3>{(showStatement.transactionFee) * (showStatement.transactionsNumber)}$</h3> </article>  
-        <article className={styles.innerCard}>
-        <ul>
-            <li>PCI Fee: $9.19</li>
-            <li>Debit Access Fee: $4.95</li>
-         <li>IRS Fee: $4.95</li>
+        <article className={styles.innerCard}> <h4>Basis Points </h4><h4>{(((showStatement.basisPts) * (showStatement.volume))/100) }$</h4> </article>   
+         <article className={styles.innerCard}><h4>Transaction Fee: </h4> <h4>{(showStatement.transactionFee) * (showStatement.transactionsNumber)}$</h4> </article>  
+       
+    {/* </section> */}
+    </section>
+    <article className={styles.fees} >
+   
+    <ul>
+       <li><h3>PCI Fee: $9.19</h3></li>
+       <li><h3>Debit Access Fee: $4.95</h3></li>
+    <li><h3>IRS Fee: $4.95</h3></li>
 
-        </ul>
-        </article>
+   </ul>
+   
+   </article>
+        
         <div className={styles.icons}>
             {/* <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
             <div onClick={()=> handleDelete(s._id)}><FcRemoveImage style={{width:"50px", height:"30px"}}/></div>  */}
@@ -106,7 +117,8 @@ function StatementPage(props) {
             {/* <h2>our fees total : `${}` </h2> */}
         </article>
     </figure>
-
+    </section>
+    
      </>
   )
 }

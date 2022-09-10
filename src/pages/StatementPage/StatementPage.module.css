@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200;1,300;1,400&family=Raleway:wght@100;400&display=swap');
 
 
 
@@ -11,8 +12,9 @@
     padding:1rem;
     justify-content: center;
     align-items:center;
-   display:flex;
-    width:100%;
+   /* display:flex; */
+    /* width:100vw;
+    height:100%; */
     margin: 0 auto;
 
     /* height:100vh; */
@@ -23,7 +25,9 @@
     /* border:1px solid red; */
 
     display:flex;
-    width:100%;
+    margin-top:10rem;
+    /* width:100%;
+    height:60%; */
     flex-direction:column;
     align-items: center;
     align-self:center;
@@ -38,18 +42,74 @@
 .mainCard{
     display:flex;
     flex-direction: column;
-    width:100vw;
-    border:1px solid red;
+    /* width:100vw; */
+    border:1px solid transparent;
+    /* background-color:rgba(98, 233, 85, 0.5); */
+    background-color:rgba(244, 245, 244, 0.597);
+
+    box-shadow: goldenrod 0px 2px 8px 0px;    
+
+    flex-wrap:wrap;
+    padding:1rem;
+    width:80%;
+    margin:0 auto;
+
+
+
     
 }
 
+.innerContent{
+    display:flex;
+    flex-direction:row;
+    align-content:center;
+    /* width:100vw; */
+    gap:1rem;
+    margin:0 auto;
+    padding:1rem;
+    width:80%;
+    margin:0 auto;
+}
+
+.half{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    /* justify-content:center; */
+    /* align-items:center; */
+}
+.innerCard{
+    display:flex;
+    /* flex-direction :row; */
+    flex-wrap:wrap;
+    /* gap:1rem; */
+    font-family: 'Poppins', sans-serif;
+/* font-family: 'Raleway', sans-serif; */
+background-color:rgba(98, 233, 85, 0.5);
+text-align: center;
+justify-content:center;
+
+
+}
 .customerProposal{
     display:flex;
     flex-direction: column;
-    border:1px solid blue;
+    justify-content: center;
+    border:1px solid transparent;
     width:80%;
     margin: 0 auto;
     gap: 1rem;
+    background-color:rgba(244, 245, 244, 0.597);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;    
+    text-align: center;
+
+}
+.headerTitle{
+    display:flex;
+    justify-content: center;
+    align-self:center;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: underline;
 }
 .green{
     display:flex;
@@ -69,6 +129,35 @@
     color:red;
 
 }
+
+.fees{
+    display:flex;
+    justify-content:center;
+    align-self:center;
+    align-items:center;
+    font-family: 'Poppins', sans-serif;
+    width:100%;
+    text-align:center;
+
+}
+ul{
+    display:flex;
+    justify-content: center;
+    width:100%;
+    margin:0 auto;
+    padding:1rem;
+    font-family: 'Poppins', sans-serif;
+
+    gap:0.4rem;
+}
+.fonts{
+    display:flex;
+    /* font-family: 'Poppins', sans-serif; */
+/* font-family: 'Raleway', sans-serif; */
+    size: 50px;
+
+}
+
 /* .card{
     border:1px  rgb(97, 228, 88);
     display:flex;

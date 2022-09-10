@@ -2,6 +2,7 @@ import React from 'react'
 import LOGO from "../../assets/logo.svg";
 import styles from "./Header.module.css";
 import {FaHamburger} from 'react-icons/fa';
+import {FcPrevious} from 'react-icons/fc'
 import { useState } from 'react';
 import {NavLink} from 'react-router-dom';
 import { Link } from "react-router-dom";
@@ -22,7 +23,7 @@ function Header(props) {
 
                     
                         <Link to="/" className={styles.display} > <figure className={styles.logoBtn}>
-             <img src={LOGO} alt="logo"  />
+             <img className={styles.displayLogo} src={LOGO} alt="logo"  />
         </figure></ Link >
         <nav>
         <div className={styles.firebaseInfo}>
@@ -31,15 +32,15 @@ function Header(props) {
                         <>
                         {console.log(props.userState.user.displayName)}
                         
-                        <ul className={styles.firebaseContent}> <li>Welcome, {props.userState.user.displayName}</li> 
-                        <li>
+                        <ul className={styles.firebaseContent}> <li className={styles.navLink}>Hi, {props.userState.user.displayName}</li> 
+                        <li className={styles.navLink} >
 
-                            <img src={props.userState.user.photoURL} style={{ height: "2.8rem", borderRadius: "50%"}}/> 
+                            <img className={styles.displayImg} src={props.userState.user.photoURL} style={{ height: "2.8rem", borderRadius: "50%"}}/> 
                      
                        
 
              
-                       </li>
+                       </li >
                         <li 
                             className={styles.navLink}
                             onClick={logout}
@@ -63,12 +64,15 @@ function Header(props) {
            </div>
            
         </nav>
-        
+
         <div className= {hamburgerMenu ? styles.active : styles.hamburgerMenu}  >
+<div>         
+</div>
             <ul className={styles.hamburgerMenuItems} onClick={showHamburgerMenu} >
-                <li className={styles.menuItems}>option1</li>
-                <li>option2</li>
-                <li>option3</li>
+                <li><FcPrevious className={styles.previousBtn} /></li>
+              <Link to='/'>  <li className={styles.menuItems}>Home</li></Link> 
+              <Link to='/ViewStatements'>  <li className={styles.menuItems}>View Statements</li></Link> 
+              <Link to='/CreateProposal'>  <li className={styles.menuItems}>Create a Proposal</li></Link> 
             </ul>
         </div>
 
