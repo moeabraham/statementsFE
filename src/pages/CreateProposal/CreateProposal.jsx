@@ -171,10 +171,10 @@ function CreateProposal(props) {
 
                 <Link handleShowStatement={handleShowStatement} to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i}  >
                     <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
-                        <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
-                        <article className={styles.innerCard} > <h3 className={styles.fonts}>Total: </h3><h3>{s.volume}</h3></article>
-                        <article className={styles.innerCard}> <h3 className={styles.fonts}>Transactions Numbers: </h3><h3>{s.transactionsNumber}</h3> </article>   
-                        <article className={styles.innerCard}><h3 className={styles.fonts}>Current Fee: </h3> <h3>{s.fees}</h3> </article>   
+                        <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3 className={styles.fonts}> {s.statementName}</h3></article>
+                        <article className={styles.innerCard} > <h3 className={styles.fonts}>Total: </h3><h3 className={styles.fonts}>{s.volume}</h3></article>
+                        <article className={styles.innerCard}> <h3 className={styles.fonts}>Transactions Numbers: </h3><h3 className={styles.fonts}>{s.transactionsNumber}</h3> </article>   
+                        <article className={styles.innerCard}><h3 className={styles.fonts}>Current Fee: </h3> <h3 className={styles.fonts}>{s.fees}</h3> </article>   
                     </figure>
                 </Link>
 

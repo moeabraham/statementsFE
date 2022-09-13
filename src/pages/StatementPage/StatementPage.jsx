@@ -25,9 +25,9 @@ function StatementPage(props) {
     let merchantCreditFees = (((showStatement.creditInterchange)/(100)) * (creditCardVolume));
     let basisPts = ((showStatement.basisPts) * (showStatement.volume)/100);
     let transactionsFee = (showStatement.transactionFee) * (showStatement.transactionsNumber);
-    let miscellaneous = 27.09;
+    let miscellaneous = 34.59;
     let currentFees = showStatement.fees;
-    let customerPaying =( (showStatement.volume) * (currentFees/100));
+    let customerPaying =( (showStatement.volume) * (currentFees/100)).toFixed(2);
     let fees = (merchantDebitFees + merchantCreditFees + basisPts + transactionsFee + miscellaneous)
     let screenFees = fees.toFixed(2)
     // console.log(screenFees)
@@ -83,6 +83,9 @@ const[thisPage, setThisPage] = useState({
             </li>
             <li>
                 <h3>IRS Fee: $4.95</h3>
+            </li>
+            <li>
+                <h3>Batch Fee: $7.50</h3>
             </li>
          </ul>
     </article>
