@@ -34,7 +34,7 @@ function StatementPage(props) {
     // console.log(showStatement.volume)
     let ourRate = ((screenFees / showStatement.volume)*100).toFixed(2);
 
-    let ourSavings =  customerPaying- screenFees  ;
+    let ourSavings =  (customerPaying- screenFees ).toFixed(2) ;
 
 const[thisPage, setThisPage] = useState({
 
@@ -45,7 +45,7 @@ const[thisPage, setThisPage] = useState({
     {/* {console.log(showStatement)} */}
     {/* thisPage={thisPage} settingThePage = {settingThePage} */}
         <h1 className={styles.headerTitle}>{props.statement.showStatement.statementName}</h1>
-       <Link to="/"   >  <FcDepartment /></Link>
+       <Link to="/"   >  <FcDepartment style={{width:"60px", height:"50px"}}/></Link>
  <section className={styles.container}>
 <figure className={styles.mainCard}  >
     <section className={styles.half}>
@@ -68,7 +68,7 @@ const[thisPage, setThisPage] = useState({
         {/* <article className={styles.innerCard}><h3 className={styles.fonts}>MCF : { ((showStatement.creditPercentage)/100) * showStatement.volume}$</h3></article> */}
         <article className={styles.innerCard}><h4 className={styles.fonts}>MCF :</h4><h4> {merchantCreditFees.toFixed(2)}$</h4></article>
 
-        <article className={styles.innerCard}> <h4>Basis Points </h4><h4>{(((showStatement.basisPts) * (showStatement.volume))/100) }$</h4> </article>   
+        <article className={styles.innerCard}> <h4>Basis Points: </h4><h4>{(((showStatement.basisPts) * (showStatement.volume))/100) }$</h4> </article>   
          <article className={styles.innerCard}><h4>Transaction Fee: </h4> <h4>{((showStatement.transactionFee) * (showStatement.transactionsNumber)).toFixed(2) }$</h4> </article>  
        
     {/* </section> */}

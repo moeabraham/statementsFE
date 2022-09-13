@@ -116,7 +116,7 @@ function CreateProposal(props) {
 
                 <label className={styles.labels}>
                     current fee
-                    <input className={styles.inputs} type="text" name="fees" onChange={handleChange}  value={statement.newStatement.fees}   />
+                    <input className={styles.inputs} placeholder="2 or 2.0" type="text" name="fees" onChange={handleChange}  value={statement.newStatement.fees}   />
                 </label>
 
                 <label className={styles.labels}>
@@ -126,32 +126,32 @@ function CreateProposal(props) {
 
                 <label className={styles.labels}>
                     Debit Card Transaction Percentage
-                    <input className={styles.inputs} type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
+                    <input className={styles.inputs} placeholder="60 or 40(don not add percentage)" type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
                 </label>
 
                 <label className={styles.labels}>
                      Debit Interchange
-                    <input className={styles.inputs} type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
+                    <input className={styles.inputs} placeholder="0.06" type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
                 </label>
 
                 <label className={styles.labels}>
                     Credit Card Transaction Percentage
-                    <input className={styles.inputs} type="text" name="creditPercentage" onChange={handleChange}  value={statement.newStatement.creditPercentage}  />
+                    <input className={styles.inputs} placeholder="60 or 40(don not add percentage)" type="text" name="creditPercentage" onChange={handleChange}  value={statement.newStatement.creditPercentage}  />
                 </label>
 
                 <label className={styles.labels}>
                     Credit Interchange
-                    <input  className={styles.inputs} type="text" name="creditInterchange"  onChange={handleChange} value={statement.newStatement.creditFees} />
+                    <input  className={styles.inputs} placeholder="1.90" type="text" name="creditInterchange"  onChange={handleChange} value={statement.newStatement.creditFees} />
                 </label>
 
                 <label className={styles.labels}>
-                    Basis Pts <h7>(format:0.10 ...)</h7>:
-                    <input className={styles.inputs} type="text" name="basisPts" onChange={handleChange}  value={statement.newStatement.basisPts}   />
+                    Basis Pts:
+                    <input className={styles.inputs} placeholder="0.10" type="text" name="basisPts" onChange={handleChange}  value={statement.newStatement.basisPts}   />
                 </label>
 
                 <label className={styles.labels}>
                     transaction Fees
-                    <input className={styles.inputs} type="text" name="transactionFee"  onChange={handleChange}   value={statement.newStatement.transactionFee} />
+                    <input className={styles.inputs} placeholder="0.10" type="text" name="transactionFee"  onChange={handleChange}   value={statement.newStatement.transactionFee} />
                 </label>
 
                 <button>{statement.editMode ? "edit proposal" : "Create a proposal"}</button>

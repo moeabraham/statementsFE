@@ -13,8 +13,8 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  BrowserRouter
+  // Link,
+  // BrowserRouter
 } from "react-router-dom";
 
 // import {fetchStatements} from "./services/ApiServices"
@@ -59,7 +59,7 @@ const [userState, setUserState]= useState({
   
 
   useEffect(() => {
-      console.log(statement.showStatement)
+      // console.log(userState.user.uid)
     // }
     async function getAppData(){
      const statements = await fetch( "https://statementsbe.herokuapp.com/api/statements")
