@@ -1,11 +1,20 @@
 import React,{useEffect,useState} from 'react'
 import { useParams,  } from "react-router-dom";
 import styles from './StatementPage.module.css';
-
+import {FcDepartment} from "react-icons/fc";
+// import  { useEffect} from "react";
+import {Link} from "react-router-dom"
 function StatementPage(props) {
     const {id} = useParams();
-    console.log(id)
-    console.log(props)
+    // const[pageData, setPageData] = useState({
+    //     pageData: props.statement.showStatement
+    // })
+    // setPageData()
+    // console.log(pageData)
+    // setPageData(props.statement.showStatement)
+    // console.log(id)
+    // console.log(pageData)
+    // console.log(props.statement.showStatement)
     const {showStatement} = props.statement;
     // console.log((showStatement.debitPercentage *showStatement.volume )/100)
     let debitCardVolume = (showStatement.debitPercentage/100) * (showStatement.volume);
@@ -21,44 +30,22 @@ function StatementPage(props) {
     let customerPaying =( (showStatement.volume) * (currentFees/100));
     let fees = (merchantDebitFees + merchantCreditFees + basisPts + transactionsFee + miscellaneous)
     let screenFees = fees.toFixed(2)
+    // console.log(screenFees)
+    // console.log(showStatement.volume)
+    let ourRate = ((screenFees / showStatement.volume)*100).toFixed(2);
 
     let ourSavings =  customerPaying- screenFees  ;
-    console.log(debitCardVolume)
-    console.log(merchantDebitFees)
-    console.log(basisPts)
-    console.log(fees)
-    // function sumFees(values){
-    //     const {showStatement} = props.statement;
-       
-    //     console.log(transactionsFee)
-    //     return debitVolume, creditVolume, merchantDebitFees,merchantCreditFees, basisPts, transactionsFee,miscellaneous 
-    // }
-    // sumFees()
-    // console.log(debitVolume)
-    // let [showStatement, setShowStatement] =useState([]);
-    // const [statementInfo, setStatementInfo] = useState([])
-    
-    // setShowStatement()
-    // const showStatements =  props.statement.statements.find(statement => statement._id === id)
-    // console.log(showStatement)
-// console.log(parseInt(showStatement.debitPercentage))
-//    let merchantDebitFees = parseInt(showStatement.debitPercentage)/(100) * parseInt(showStatement.volume)
+
+const[thisPage, setThisPage] = useState({
+
+})
+
   return (
     <>
- {/* <pre>
-  {JSON.stringify(showStatement, null, 2)}
-</pre> */}
-
-<h1 className={styles.headerTitle}>{props.statement.showStatement.statementName}</h1>
-{/* <section className={styles.container}>
-    <article className={styles.cards}>
-            <h1> statementName: {showStatement.statementName} </h1>
-            <h2>{showStatement.volume}</h2>
-            <h2>{showStatement.fees}</h2>
-            <h2>{showStatement.volume}</h2>
-    </article>
-</section>
- */}
+    {/* {console.log(showStatement)} */}
+    {/* thisPage={thisPage} settingThePage = {settingThePage} */}
+        <h1 className={styles.headerTitle}>{props.statement.showStatement.statementName}</h1>
+       <Link to="/"   >  <FcDepartment /></Link>
  <section className={styles.container}>
 <figure className={styles.mainCard}  >
     <section className={styles.half}>
@@ -82,40 +69,48 @@ function StatementPage(props) {
         <article className={styles.innerCard}><h4 className={styles.fonts}>MCF :</h4><h4> {merchantCreditFees.toFixed(2)}$</h4></article>
 
         <article className={styles.innerCard}> <h4>Basis Points </h4><h4>{(((showStatement.basisPts) * (showStatement.volume))/100) }$</h4> </article>   
-         <article className={styles.innerCard}><h4>Transaction Fee: </h4> <h4>{(showStatement.transactionFee) * (showStatement.transactionsNumber)}$</h4> </article>  
+         <article className={styles.innerCard}><h4>Transaction Fee: </h4> <h4>{((showStatement.transactionFee) * (showStatement.transactionsNumber)).toFixed(2) }$</h4> </article>  
        
     {/* </section> */}
     </section>
     <article className={styles.fees} >
-   
-    <ul>
-       <li><h3>PCI Fee: $9.19</h3></li>
-       <li><h3>Debit Access Fee: $4.95</h3></li>
-    <li><h3>IRS Fee: $4.95</h3></li>
-
-   </ul>
-   
-   </article>
+        <ul>
+            <li>
+                <h3>PCI Fee: $9.19</h3>
+            </li>
+            <li>
+                <h3>Debit Access Fee: $4.95</h3>
+            </li>
+            <li>
+                <h3>IRS Fee: $4.95</h3>
+            </li>
+         </ul>
+    </article>
         
-        <div className={styles.icons}>
-            {/* <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
-            <div onClick={()=> handleDelete(s._id)}><FcRemoveImage style={{width:"50px", height:"30px"}}/></div>  */}
+   
+    <article className={styles.customerProposal}>
+          
+        <div className={styles.proposalTitles}> 
+            <h1 className={styles.proposalTitlesFonts}>Our Offer : </h1>
+            <h1 className={styles.proposalTitlesFonts}>{`${screenFees}$`}</h1> 
         </div>
-        <article className={styles.customerProposal}>
-            <h1>Our Offer : </h1>
-                {/* reducer : {showStatement.reduce((total, m) => total + )} */}
-                <div> 
-                    <h1>{`${fees}`}</h1> 
-              </div>
-              <div>            <h1> Current Rate: {`${currentFees}%`} </h1></div>
-              <div ><h1> Customer currently Paying: {`${customerPaying}`}</h1></div>
 
-              {/* <div>{`${ourSavings}` }<h1> ourSavings : {`${ourSavings}`}</h1></div> */}
+        <div className={styles.proposalTitles}>           
+            <h1 className={styles.proposalTitlesFonts}> Current Rate: {`${currentFees}%`} </h1>
+        </div>
 
-              {ourSavings >=0 ? <div className={styles.green} >{`${ourSavings}` }</div> : <><div className={styles.red} >{`${ourSavings}` }</div></>}
-            {/* total Fees: fees{((showStatement.debitPercentage)/100) * showStatement.volume} + { ((showStatement.creditPercentage)/100) * showStatement.volume} + 19.09 + {(showStatement.basisPts) * showStatement.volume} + {(showStatement.transactionFee) * (showStatement.transactionsNumber)} */}
-            {/* <h2>our fees total : `${}` </h2> */}
-        </article>
+        <div className={styles.proposalTitles}> 
+            <h1 className={styles.proposalTitlesFonts}>Our Rate :{`${ourRate}%`} </h1>
+        </div>       
+
+        <div className={styles.proposalTitles}>
+            <h1 className={styles.proposalTitlesFonts}> Customer currently Paying: {`${customerPaying}$`}</h1>
+        </div>
+
+        {/* <div className={styles.proposalTitles}> */}
+            {ourSavings >=0 ? <div className={styles.green} >Our Savings: {`${ourSavings}$` }</div> :  <>We would still love doing busienss with you<div className={styles.red} > {`${ourSavings}` }</div></>}
+        {/* </div>   */}
+    </article>
     </figure>
     </section>
     
@@ -123,4 +118,21 @@ function StatementPage(props) {
   )
 }
 
-export default StatementPage
+export default StatementPage;
+
+
+
+
+
+
+              {/* <div>{`${ourSavings}` }<h1> ourSavings : {`${ourSavings}`}</h1></div> */}
+
+            {/* total Fees: fees{((showStatement.debitPercentage)/100) * showStatement.volume} + { ((showStatement.creditPercentage)/100) * showStatement.volume} + 19.09 + {(showStatement.basisPts) * showStatement.volume} + {(showStatement.transactionFee) * (showStatement.transactionsNumber)} */}
+            {/* <h2>our fees total : `${}` </h2> */}
+
+
+
+     {/* <div className={styles.icons}> */}
+            {/* <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
+            <div onClick={()=> handleDelete(s._id)}><FcRemoveImage style={{width:"50px", height:"30px"}}/></div>  */}
+        {/* </div> */}

@@ -47,7 +47,7 @@
     /* background-color:rgba(98, 233, 85, 0.5); */
     background-color:rgba(244, 245, 244, 0.597);
 
-    box-shadow: goldenrod 0px 2px 8px 0px;    
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;    
 
     flex-wrap:wrap;
     padding:1rem;
@@ -98,9 +98,9 @@ justify-content:center;
     border:1px solid transparent;
     width:80%;
     margin: 0 auto;
-    gap: 1rem;
+    /* gap: 1rem; */
     background-color:rgba(244, 245, 244, 0.597);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;    
+    box-shadow: rgba(211, 198, 12, 0.739) 0px 2px 8px 0px;    
     text-align: center;
 
 }
@@ -120,6 +120,14 @@ justify-content:center;
     height:70%;
     color:white;
     align-items:center;
+    /* height:80px; */
+    justify-content:center;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: underline;
+    font-weight:700;
+    font-size:50px;
+    padding:1rem;
+
 
 }
 
@@ -156,6 +164,9 @@ ul{
 /* font-family: 'Raleway', sans-serif; */
     size: 50px;
 
+}
+.proposalTitlesFonts{
+    font-family: 'Poppins', sans-serif;
 }
 
 /* .card{

@@ -8,7 +8,7 @@ import {FcApproval} from 'react-icons/fc';
 import {FcPlus} from 'react-icons/fc';
 import {Link} from 'react-router-dom';
 
-function LandingPage() {
+function LandingPage(props) {
   return (
     <div>
         <Link className={styles.container} to='viewstatements'>

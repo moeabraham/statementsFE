@@ -137,7 +137,7 @@ nav > div>  svg {
 
 .firebaseInfo{
     display:flex;
-
+    
     /* justify-content: center; */
 margin-left: 0 auto;
 flex-grow:1;
@@ -155,6 +155,30 @@ li{
 
 .firebaseContent{
     display:flex;
+    justify-content:center;
+    /* background-color: red; */
+
+}
+
+.navLink{
+    display:flex;
+    /* background-color: red; */
+    align-self:center;
+    font-family: 'Poppins', sans-serif;
+    /* flex-grow:1; */
+
+
+}
+.navLinkOut{
+    display:flex;
+    justify-content: flex-end;
+    /* background-color: red; */
+    font-size:1rem;
+    align-self:center;
+    font-family: 'Poppins', sans-serif;
+    flex-grow:1;
+
+
 }
 
 
@@ -170,11 +194,13 @@ li{
         flex-basis:1;
         flex-grow:1;
         width:100%;
+        justify-content: flex-start;
+        align-items:center;
     }
     .displayLogo{
         padding:0.5rem;
-        width:60px;
-        height:20px;
+        /* width:60px;
+        height:20px; */
     }
     .firebaseInfo{
         display:flex;
@@ -196,6 +222,8 @@ li{
         color:red;
         font-family: 'Poppins', sans-serif;
         font-weight:100;
+        align-self:center;
+        justify-content:center;
 
 /* font-family: 'Raleway', sans-serif; */
 
