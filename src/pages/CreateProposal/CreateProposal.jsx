@@ -112,11 +112,13 @@ function CreateProposal(props) {
                 <label className={styles.labels}>
                     total volume
                     <input  className={styles.inputs} type="text" name="volume"  onChange={handleChange} value={statement.newStatement.volume} />
+                $
                 </label>
 
                 <label className={styles.labels}>
                     current fee
-                    <input className={styles.inputs} placeholder="2 or 2.0" type="text" name="fees" onChange={handleChange}  value={statement.newStatement.fees}   />
+                    <input className={styles.inputs} placeholder="2 or 2.0..." type="text" name="fees" onChange={handleChange}  value={statement.newStatement.fees}   />
+                %
                 </label>
 
                 <label className={styles.labels}>
@@ -125,28 +127,34 @@ function CreateProposal(props) {
                 </label>
 
                 <label className={styles.labels}>
-                    Debit Card Transaction Percentage
+                    Debit Card percentage
                     <input className={styles.inputs} placeholder="60 or 40(don not add percentage)" type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
-                </label>
+                %
+                 </label>
 
                 <label className={styles.labels}>
                      Debit Interchange
                     <input className={styles.inputs} placeholder="0.06" type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
+                %
                 </label>
 
                 <label className={styles.labels}>
-                    Credit Card Transaction Percentage
-                    <input className={styles.inputs} placeholder="60 or 40(don not add percentage)" type="text" name="creditPercentage" onChange={handleChange}  value={statement.newStatement.creditPercentage}  />
+                    Credit Card percentage
+                    
+                    <input className={styles.inputs} placeholder="60 or 40.." type="text" name="creditPercentage" onChange={handleChange}  value={statement.newStatement.creditPercentage}  /> 
+                %
                 </label>
 
                 <label className={styles.labels}>
                     Credit Interchange
                     <input  className={styles.inputs} placeholder="1.90" type="text" name="creditInterchange"  onChange={handleChange} value={statement.newStatement.creditFees} />
+                %
                 </label>
 
                 <label className={styles.labels}>
                     Basis Pts:
                     <input className={styles.inputs} placeholder="0.10" type="text" name="basisPts" onChange={handleChange}  value={statement.newStatement.basisPts}   />
+                %
                 </label>
 
                 <label className={styles.labels}>
@@ -164,9 +172,9 @@ function CreateProposal(props) {
                 <Link handleShowStatement={handleShowStatement} to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i}  >
                     <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
                         <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
-                        <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
-                        <article className={styles.innerCard}> <h3>Transactions Numbers: </h3><h3>{s.transactionsNumber}</h3> </article>   
-                        <article className={styles.innerCard}><h3>Current Fee: </h3> <h3>{s.fees}</h3> </article>   
+                        <article className={styles.innerCard} > <h3 className={styles.fonts}>Total: </h3><h3>{s.volume}</h3></article>
+                        <article className={styles.innerCard}> <h3 className={styles.fonts}>Transactions Numbers: </h3><h3>{s.transactionsNumber}</h3> </article>   
+                        <article className={styles.innerCard}><h3 className={styles.fonts}>Current Fee: </h3> <h3>{s.fees}</h3> </article>   
                     </figure>
                 </Link>
 
