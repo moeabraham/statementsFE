@@ -28,6 +28,7 @@ function App(props) {
        creditPercentage:"",creditInterchange:"",creditCardVolume:"",  merchantCreditFees:"",
        basisPts:"",transactionFee:"",
        debitValue:"",creditValue:"",
+       transactionInterchangeFees:"",
 
     
   
@@ -40,6 +41,8 @@ function App(props) {
 
       basisPts:"0.20 ",transactionFee:"0.10",
       debitValue:"",creditValue:"",
+      transactionInterchangeFees:""
+
       
     },
     showStatement:{
@@ -48,7 +51,11 @@ function App(props) {
     creditPercentage:"",creditInterchange:"0.0190",creditCardVolume:"",merchantCreditFees:"",
 
     basisPts:"0.20 ",transactionFee:"0.10",
-    debitValue:"",creditValue:""},
+    debitValue:"",creditValue:"",
+    transactionInterchangeFees:"",
+
+  
+  },
     editMode:false
 
   } )
@@ -74,11 +81,9 @@ const [userState, setUserState]= useState({
       }))
 
                  
-  // //  setStatement(statements)
     }
 
     getAppData()
-    // handleShowStatement()
    const unsubscripe = auth.onAuthStateChanged(user => setUserState( { user}))
    return function(){
     unsubscripe()
@@ -90,7 +95,7 @@ const [userState, setUserState]= useState({
 
 
   function handleChange(e){
-    // let debitCardVolume = statement.newStatement.volume *statement.newStatement.debitPercentage
+
     setStatement(prevState => ({
         ...prevState,
         newStatement:{
@@ -144,9 +149,6 @@ async function handleDelete(id){
   }
    
     
-    // fetch(`https://statementsbe.herokuapp.com/api/statements/${id}`, {
-    //     method : "DELETE"
-    // }).then(res=> res.json())
 }
 
 
@@ -158,7 +160,6 @@ async  function handleSubmit(e){
   if(statement.editMode){
       const{statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue   } =statement.newStatement
      try{
-      // updateStatement(newStatement)
       const editedStatements = await updateStatement(statement.newStatement, userState.user.uid)
       
       // fetch(`https://statementsbe.herokuapp.com/api/statements/${_id}`,{
@@ -180,7 +181,9 @@ async  function handleSubmit(e){
                debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
                creditPercentage:"",creditInterchange:"",creditCardVolume:"",merchantCreditFees:"",
                basisPts:"",transactionFee:"",
-               debitValue:"",creditValue:""
+               debitValue:"",creditValue:"",
+               transactionInterchangeFees:""
+
         
               
           }
@@ -216,6 +219,8 @@ async  function handleSubmit(e){
                     
                       basisPts:"",transactionFee:"",    
                       debitValue:"",creditValue:"",
+                      transactionInterchangeFees:"",
+
                   }
               })
 

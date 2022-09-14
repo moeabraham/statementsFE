@@ -1,5 +1,5 @@
-const BASE_URL ="https://statementsbe.herokuapp.com/api/statements"
-// const BASE_URL ="http://localhost:3001/api/statements"
+// const BASE_URL ="https://statementsbe.herokuapp.com/api/statements"
+const BASE_URL ="http://localhost:3001/api/statements"
 
  function fetchStatements(uid){
 
@@ -9,13 +9,13 @@ return fetch(`${BASE_URL}?uid=${uid}`)
 }
 
 
-function updateStatement({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue}, uid){
+function updateStatement({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue,transactionInterchangeFees}, uid){
     return fetch(`${BASE_URL}/${_id}?uid=${uid}`,{
         method:"PUT",
         headers:{
             'Content-type' : "Application/json"
         },
-        body:JSON.stringify({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue})
+        body:JSON.stringify({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue,transactionInterchangeFees})
     }).then(res => res.json())
 }
 

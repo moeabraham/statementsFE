@@ -16,6 +16,7 @@ function StatementPage(props) {
     // console.log(pageData)
     // console.log(props.statement.showStatement)
     const {showStatement} = props.statement;
+    console.log(showStatement.transactionInterchangeFees)
     // console.log((showStatement.debitPercentage *showStatement.volume )/100)
     let debitCardVolume = (showStatement.debitPercentage/100) * (showStatement.volume);
     // let merchantDebitFees = (((showStatement.debitInterchange)/(100)) * (debitCardVolume))
@@ -27,18 +28,25 @@ function StatementPage(props) {
     let basisPts = ((showStatement.basisPts) * (showStatement.volume)/100);
     let transactionsFee = (showStatement.transactionFee) * (showStatement.transactionsNumber);
     let miscellaneous = 34.59;
-    let currentFees = showStatement.fees;
+    let currentFees = ((showStatement.fees) );
     let customerPaying =( (showStatement.volume) * (currentFees/100)).toFixed(2);
-    let fees = (merchantDebitFees + merchantCreditFees + basisPts + transactionsFee + miscellaneous)
+
+    let cutomerEffectiveRate = ((showStatement.fees) / (showStatement.volume)*100).toFixed(2);
+    
+    // console.log(cutomerEffectiveRate)
+    // console.log(showStatement.fees)
+    // console.log(showStatement.volume)
+    let transactionInterchangeFees = ((showStatement.transactionInterchangeFees) * (showStatement.transactionsNumber))
+    let fees = (merchantDebitFees + merchantCreditFees + basisPts + transactionsFee + miscellaneous + transactionInterchangeFees)
     let screenFees = fees.toFixed(2)
     // console.log(screenFees)
     // console.log(showStatement.volume)
-    let ourRate = ((screenFees / showStatement.volume)*100).toFixed(3);
+    let ourRate = (((screenFees) / (showStatement.volume))*100).toFixed(3);
 
-    let ourSavings =  (customerPaying- screenFees ).toFixed(2) ;
-    console.log(merchantCreditFees)
-    console.log(((showStatement.creditInterchange)/(100)))
-    console.log(creditCardVolume)
+    let ourSavings =  (currentFees- screenFees ).toFixed(2) ;
+    // console.log(merchantCreditFees)
+    // console.log(((showStatement.creditInterchange)/(100)))
+    // console.log(creditCardVolume)
 
 const[thisPage, setThisPage] = useState({
 
@@ -57,7 +65,7 @@ const[thisPage, setThisPage] = useState({
         <article className={styles.innerCard}><h4 className={styles.fonts}>Statement Name :</h4> <h4> {showStatement.statementName}</h4></article>
         <article className={styles.innerCard} > <h4 className={styles.fonts}>Total Volume: </h4><h4>{showStatement.volume}$</h4></article>
         <article className={styles.innerCard}> <h4 className={styles.fonts}>Transactions Numbers: </h4><h4>{showStatement.transactionsNumber}</h4> </article>   
-        <article className={styles.innerCard}><h4 className={styles.fonts}>Current Fee: </h4> <h4>{showStatement.fees}%</h4> </article>  
+        <article className={styles.innerCard}><h4 className={styles.fonts}>Current Fee: </h4> <h4>{showStatement.fees}$</h4> </article>  
 
         <article className={styles.innerCard}><h4 className={styles.fonts}>Debit Interchange :</h4><h4> {showStatement.debitInterchange}% </h4></article>
         <article className={styles.innerCard}><h4 className={styles.fonts}>Debit Volume :</h4><h4> { (showStatement.debitPercentage/100) * showStatement.volume}$</h4></article>
@@ -74,6 +82,7 @@ const[thisPage, setThisPage] = useState({
 
         <article className={styles.innerCard}> <h4>Basis Points: </h4><h4>{(((showStatement.basisPts) * (showStatement.volume))/100) }$</h4> </article>   
          <article className={styles.innerCard}><h4>Transaction Fee: </h4> <h4>{((showStatement.transactionFee) * (showStatement.transactionsNumber)).toFixed(2) }$</h4> </article>  
+         <article className={styles.innerCard}><h4>Transaction Interchange Fees: </h4> <h4>{((showStatement.transactionInterchangeFees) * (showStatement.transactionsNumber)).toFixed(2) }$</h4> </article>  
        
     {/* </section> */}
     </section>
@@ -103,7 +112,7 @@ const[thisPage, setThisPage] = useState({
         </div>
 
         <div className={styles.proposalTitles}>           
-            <h1 className={styles.proposalTitlesFonts}> Current Rate: {`${currentFees}%`} </h1>
+            <h1 className={styles.proposalTitlesFonts}> Current Rate: {`${cutomerEffectiveRate}%`} </h1>
         </div>
 
         <div className={styles.proposalTitles}> 
@@ -111,7 +120,7 @@ const[thisPage, setThisPage] = useState({
         </div>       
 
         <div className={styles.proposalTitles}>
-            <h1 className={styles.proposalTitlesFonts}> Customer currently Paying: {`${customerPaying}$`}</h1>
+            <h1 className={styles.proposalTitlesFonts}> Customer currently Paying: {`${currentFees}$`}</h1>
         </div>
 
         {/* <div className={styles.proposalTitles}> */}

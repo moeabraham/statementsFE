@@ -17,7 +17,7 @@ function CreateProposal(props) {
         const{statement, setStatement, handleEdit, handleDelete, handleChange,handleSubmit, userState, setUserState, handleShowStatement} =  props
         const{ newStatement, statements, editMode,} = statement
 
-       console.log(statement)
+       console.log(statement.statements)
 //   async  function handleSubmit(e){
 
 //     e.preventDefault()
@@ -117,8 +117,8 @@ function CreateProposal(props) {
 
                 <label className={styles.labels}>
                     current fee
-                    <input className={styles.inputs} placeholder="2 or 2.0..." type="text" name="fees" onChange={handleChange}  value={statement.newStatement.fees}   />
-                %
+                    <input className={styles.inputs} placeholder="200 300.." type="text" name="fees" onChange={handleChange}  value={statement.newStatement.fees}   />
+                $
                 </label>
 
                 <label className={styles.labels}>
@@ -160,6 +160,10 @@ function CreateProposal(props) {
                 <label className={styles.labels}>
                     transaction Fees
                     <input className={styles.inputs} placeholder="0.10" type="text" name="transactionFee"  onChange={handleChange}   value={statement.newStatement.transactionFee} />
+                </label>
+                <label className={styles.labels}>
+                    transaction Interchange Fees
+                    <input className={styles.inputs} placeholder="0.12" type="text" name="transactionInterchangeFees"  onChange={handleChange}   value={statement.newStatement.transactionInterchangeFees} />
                 </label>
 
                 <button>{statement.editMode ? "edit proposal" : "Create a proposal"}</button>
