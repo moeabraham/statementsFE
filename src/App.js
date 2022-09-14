@@ -61,10 +61,12 @@ const [userState, setUserState]= useState({
   useEffect(() => {
       // console.log(userState.user.uid)
     // }
-
+    console.log(statement.showStatement)
+    if(statement.showStatement.statementName)
+      handleShowStatement(statement.statements._id, userState.user.uid)
     async function getAppData(){
       if(!userState.user) return;
-      console.log(userState.user.uid)
+      // console.log(userState.user.uid)
      const statements = await fetchStatements(userState.user.uid);
     //  console.log(statements)
      
@@ -80,20 +82,23 @@ const [userState, setUserState]= useState({
       }))
 
                  
-  //  setStatement(statements)
+  // //  setStatement(statements)
     }
 
     getAppData()
     // handleShowStatement()
    const unsubscripe = auth.onAuthStateChanged(user => setUserState( { user}))
-
+   return function(){
+    unsubscripe()
+  }
+    
   },[userState.user])
 
 
 
 
   function handleChange(e){
-    let debitCardVolume = statement.newStatement.volume *statement.newStatement.debitPercentage
+    // let debitCardVolume = statement.newStatement.volume *statement.newStatement.debitPercentage
     setStatement(prevState => ({
         ...prevState,
         newStatement:{
@@ -106,6 +111,7 @@ const [userState, setUserState]= useState({
 
 }
   function handleEdit(id){
+    if(!userState.user) return;
     const statementToEdit = statement.statements.find(statement => statement._id === id)
 
    setStatement(prevState => ({
@@ -118,8 +124,7 @@ const [userState, setUserState]= useState({
 async function handleShowStatement(id, uids){
   // console.log(props)
   let {uid} = userState.user.uid
-  console.log(uid)
-  if(!userState.user.uid) return;
+  if(!userState.user) return;
 
   const statements = await fetch(`https://statementsbe.herokuapp.com/api/statements/${id}?uid=${uid}`)
   .then(res=> res.json())
@@ -134,9 +139,10 @@ setStatement(prevState=> ({
 }
 
 async function handleDelete(id){
+  if(!userState.user) return;
 
   try{
-    const statements = await deleteStatement(id)
+    const statements = await deleteStatement(id, userState.uid)
     setStatement(prevState=> ({
       ...prevState,
       statements

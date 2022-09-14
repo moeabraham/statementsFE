@@ -9,8 +9,8 @@ return fetch(`${BASE_URL}?uid=${uid}`)
 }
 
 
-function updateStatement({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue}){
-    return fetch(`${BASE_URL}/${_id}`,{
+function updateStatement({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue}, uid){
+    return fetch(`${BASE_URL}/${_id}?uid=${uid}`,{
         method:"PUT",
         headers:{
             'Content-type' : "Application/json"
@@ -35,8 +35,8 @@ function createStatement(data, uid){
         .then(res=>res.json())
 }
 
- function deleteStatement(statementId){
-        return fetch(`${BASE_URL}/${statementId}`, {
+ function deleteStatement(statementId, uid){
+        return fetch(`${BASE_URL}/${statementId}?uid=${uid}`, {
         method : "DELETE"
     }).then(res=> res.json())
 
