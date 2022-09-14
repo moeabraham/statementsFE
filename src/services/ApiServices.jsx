@@ -1,5 +1,5 @@
-// const BASE_URL ="https://statementsbe.herokuapp.com/api/statements"
-const BASE_URL ="http://localhost:3001/api/statements"
+const BASE_URL ="https://statementsbe.herokuapp.com/api/statements"
+// const BASE_URL ="http://localhost:3001/api/statements"
 
  function fetchStatements(uid){
 

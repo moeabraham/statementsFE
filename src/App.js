@@ -56,22 +56,14 @@ const [userState, setUserState]= useState({
   user: null
 })
 
-  // console.log(userState)
 
   useEffect(() => {
-      // console.log(userState.user.uid)
-    // }
-    console.log(statement.showStatement)
+    // console.log(statement.showStatement)
     if(statement.showStatement.statementName)
       handleShowStatement(statement.statements._id, userState.user.uid)
     async function getAppData(){
       if(!userState.user) return;
-      // console.log(userState.user.uid)
      const statements = await fetchStatements(userState.user.uid);
-    //  console.log(statements)
-     
-    //  ( "https://statementsbe.herokuapp.com/api/statements")
-    //   .then(res => res.json())
       setStatement(prevState =>({
         ...prevState,
        showStatement:{
@@ -122,7 +114,6 @@ const [userState, setUserState]= useState({
 }
 
 async function handleShowStatement(id, uids){
-  // console.log(props)
   let {uid} = userState.user.uid
   if(!userState.user) return;
 
