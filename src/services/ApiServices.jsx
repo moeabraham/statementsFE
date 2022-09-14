@@ -1,43 +1,51 @@
 // const BASE_URL ="https://statementsbe.herokuapp.com/api/statements"
+const BASE_URL ="http://localhost:3001/api/statements"
+
+ function fetchStatements(uid){
+
+return fetch(`${BASE_URL}?uid=${uid}`)
+      .then(res => res.json())
+
+}
 
 
-//  function fetchStatements(){
+function updateStatement({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue}){
+    return fetch(`${BASE_URL}/${_id}`,{
+        method:"PUT",
+        headers:{
+            'Content-type' : "Application/json"
+        },
+        body:JSON.stringify({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue})
+    }).then(res => res.json())
+}
 
-// return fetch(BASE_URL)
-//       .then(res => res.json())
-
-// }
-
-
-// function updateStatement({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue}){
-//     return fetch(`${BASE_URL}/${_id}`,{
-//         method:"PUT",
-//         headers:{
-//             'Content-type' : "Application/json"
-//         },
-//         body:JSON.stringify({statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue})
-//     }).then(res => res.json())
-// }
-
-// function createStatement(data){
-//     console.log(data)
-//     // return fetch (BASE_URL,{
-//     //                     method: "POST",
-//     //             headers:{
-//     //                 "Content-type" : "Application/json"
-//     //             },
+function createStatement(data, uid){
+    console.log(data)
+    return fetch (BASE_URL,{
+                method: "POST",
+                headers:{
+                    "Content-type" : "Application/json"
+                },
                 
-//     //             body:JSON.stringify(data)
-//     //             // body:JSON.stringify({...statement.newStatement, uid})
-//     //         // }).then(res=>res.json())
+                body:JSON.stringify({...data, uid})
+                // body:JSON.stringify({...statement.newStatement, uid})
+            // }).then(res=>res.json())
 
-//     // })
-//     //     .then(res=>res.json())
-// }
+    })
+        .then(res=>res.json())
+}
+
+ function deleteStatement(statementId){
+        return fetch(`${BASE_URL}/${statementId}`, {
+        method : "DELETE"
+    }).then(res=> res.json())
+
+}
 
 
-// export {
-//     fetchStatements,
-//     updateStatement,
-//     createStatement,
-// }
+export {
+    fetchStatements,
+    updateStatement,
+    createStatement,
+    deleteStatement,
+}

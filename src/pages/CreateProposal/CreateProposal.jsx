@@ -14,81 +14,81 @@ import {createStatement, updateStatement} from "../../services/ApiServices";
 
 function CreateProposal(props) {
 
-        const{statement, setStatement, handleEdit, handleDelete, handleChange, userState, setUserState, handleShowStatement} =  props
-        const{ newStatement, statements, editMode, } = statement
-       
-  async  function handleSubmit(e){
+        const{statement, setStatement, handleEdit, handleDelete, handleChange,handleSubmit, userState, setUserState, handleShowStatement} =  props
+        const{ newStatement, statements, editMode,} = statement
 
-    e.preventDefault()
-    const {uid} = userState
+       console.log(statement)
+//   async  function handleSubmit(e){
 
-    if(editMode){
-        const{statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue   } =statement.newStatement
-       try{
-        // updateStatement(newStatement)
-        const editedStatements = await fetch(`https://statementsbe.herokuapp.com/api/statements/${_id}`,{
-            method:"PUT",
-            headers:{
-                'Content-type' : "Application/json"
-            },
-            body:JSON.stringify(statement.newStatement)
-        }).then(res => res.json() )
+//     e.preventDefault()
+//     const {uid} = userState
+
+//     if(editMode){
+//         const{statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue   } =statement.newStatement
+//        try{
+//         // updateStatement(newStatement)
+//         const editedStatements = await fetch(`https://statementsbe.herokuapp.com/api/statements/${_id}`,{
+//             method:"PUT",
+//             headers:{
+//                 'Content-type' : "Application/json"
+//             },
+//             body:JSON.stringify(statement.newStatement)
+//         }).then(res => res.json() )
         
        
 
-        setStatement(prevState=>({
-            ...prevState,
-           statements: editedStatements,
-            editMode: false,
-            newStatement:{
-                statementName: "",volume: "",fees:"",transactionsNumber: "",
-                 debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
-                 creditPercentage:"",creditInterchange:"",creditCardVolume:"",merchantCreditFees:"",
-                 basisPts:"",transactionFee:"",
-                 debitValue:"",creditValue:""
+//         setStatement(prevState=>({
+//             ...prevState,
+//            statements: editedStatements,
+//             editMode: false,
+//             newStatement:{
+//                 statementName: "",volume: "",fees:"",transactionsNumber: "",
+//                  debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
+//                  creditPercentage:"",creditInterchange:"",creditCardVolume:"",merchantCreditFees:"",
+//                  basisPts:"",transactionFee:"",
+//                  debitValue:"",creditValue:""
           
                 
-            }
-        }))
-       } catch(err){
-        console.log(err)
-       }
+//             }
+//         }))
+//        } catch(err){
+//         console.log(err)
+//        }
 
 
-    } else {
-        try{
-            // createStatement(statement.newStatement)
-            const statementAdd = await fetch("https://statementsbe.herokuapp.com/api/statements",{
-                method: "POST",
-                headers:{
-                    "Content-type" : "Application/json"
-                },
-                body:JSON.stringify({...statement.newStatement, uid})
-            }).then(res=>res.json())
+//     } else {
+//         try{
+//             // createStatement(statement.newStatement)
+//             const statementAdd = await fetch("https://statementsbe.herokuapp.com/api/statements",{
+//                 method: "POST",
+//                 headers:{
+//                     "Content-type" : "Application/json"
+//                 },
+//                 body:JSON.stringify({...statement.newStatement, uid})
+//             }).then(res=>res.json())
 
             
 
-            console.log(statementAdd)
-                setStatement({
-                    statements:[...statement.statements, statementAdd],
-                    newStatement:{
-                        statementName: "",volume: "",fees:"",transactionsNumber: "",
-                         debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
-                         creditPercentage:"",creditInterchange:"",creditCardVolume:"",  merchantCreditFees:"",
+//             console.log(statementAdd)
+//                 setStatement({
+//                     statements:[...statement.statements, statementAdd],
+//                     newStatement:{
+//                         statementName: "",volume: "",fees:"",transactionsNumber: "",
+//                          debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
+//                          creditPercentage:"",creditInterchange:"",creditCardVolume:"",  merchantCreditFees:"",
 
                       
-                        basisPts:"",transactionFee:"",    
-                        debitValue:"",creditValue:"",
-                    }
-                })
+//                         basisPts:"",transactionFee:"",    
+//                         debitValue:"",creditValue:"",
+//                     }
+//                 })
 
-        } catch(err){
-            console.log(err)
-        }
-    }
+//         } catch(err){
+//             console.log(err)
+//         }
+//     }
     
-    }
-
+//     }
 
   return (
     <>  
@@ -128,13 +128,13 @@ function CreateProposal(props) {
 
                 <label className={styles.labels}>
                     Debit Card percentage
-                    <input className={styles.inputs} placeholder="60 or 40(don not add percentage)" type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
+                    <input className={styles.inputs} placeholder="60 or 40..." type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
                 %
                  </label>
 
                 <label className={styles.labels}>
                      Debit Interchange
-                    <input className={styles.inputs} placeholder="0.06" type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
+                    <input className={styles.inputs} placeholder="0.6" type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
                 %
                 </label>
 

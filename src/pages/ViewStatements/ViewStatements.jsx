@@ -13,6 +13,7 @@ function ViewStatements(props) {
 
 //    console.log(props.statement)
       const {statement, handleEdit, handleDelete, handleShowStatement} = props
+      console.log(statement)
       // console.log(props.statement.showStatement)
     //   const {id} = useParams()
     // console.log(statement)
@@ -56,10 +57,10 @@ function ViewStatements(props) {
      
     props.statement.statements.map((s,i) => (
         <>
-       <section className={styles.wholeCards}>
-    <Link to={`/viewStatements/${s._id}`}  className={styles.statementLink} key={i} >
-        <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
-                <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
+       <section className={styles.wholeCards}  key={i}>
+    <Link to={`/viewStatements/${s._id}`}  className={styles.statementLink}>
+        <figure className={styles.card} onClick={()=> handleShowStatement(s._id)} >
+                <article className={styles.innerCard}  ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
                 <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
                 <article className={styles.innerCard}> <h3>Transactions Numbers: </h3><h3>{s.transactionsNumber}</h3> </article>   
                 <article className={styles.innerCard}><h3>Current Fee: </h3> <h3>{s.fees}</h3> </article>  

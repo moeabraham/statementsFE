@@ -21,6 +21,7 @@ function StatementPage(props) {
     // let merchantDebitFees = (((showStatement.debitInterchange)/(100)) * (debitCardVolume))
     let merchantDebitFees = (((showStatement.debitInterchange)/(100)) * (debitCardVolume));
 
+
     let creditCardVolume = (showStatement.creditPercentage/100) * (showStatement.volume);
     let merchantCreditFees = (((showStatement.creditInterchange)/(100)) * (creditCardVolume));
     let basisPts = ((showStatement.basisPts) * (showStatement.volume)/100);
@@ -32,9 +33,12 @@ function StatementPage(props) {
     let screenFees = fees.toFixed(2)
     // console.log(screenFees)
     // console.log(showStatement.volume)
-    let ourRate = ((screenFees / showStatement.volume)*100).toFixed(2);
+    let ourRate = ((screenFees / showStatement.volume)*100).toFixed(3);
 
     let ourSavings =  (customerPaying- screenFees ).toFixed(2) ;
+    console.log(merchantCreditFees)
+    console.log(((showStatement.creditInterchange)/(100)))
+    console.log(creditCardVolume)
 
 const[thisPage, setThisPage] = useState({
 

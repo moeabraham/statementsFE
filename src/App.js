@@ -17,7 +17,7 @@ import {
   // BrowserRouter
 } from "react-router-dom";
 
-// import {fetchStatements} from "./services/ApiServices"
+import {fetchStatements, createStatement, updateStatement, deleteStatement} from "./services/ApiServices"
 
 function App(props) {
   const [statement, setStatement] = useState({
@@ -35,7 +35,7 @@ function App(props) {
 
     newStatement:{
       statementName: "", volume: "",fees:"",transactionsNumber: "",
-      debitCardVolume:"",  debitPercentage:"",  debitInterchange:"0.06",merchantDebitFees: "",
+      debitCardVolume:"",  debitPercentage:"",  debitInterchange:"0.6",merchantDebitFees: "",
       creditPercentage:"",creditInterchange:"0.0190",creditCardVolume:"",merchantCreditFees:"",
 
       basisPts:"0.20 ",transactionFee:"0.10",
@@ -51,19 +51,25 @@ function App(props) {
     debitValue:"",creditValue:""},
     editMode:false
 
-  })
+  } )
 const [userState, setUserState]= useState({
   user: null
 })
 
-  
+  // console.log(userState)
 
   useEffect(() => {
       // console.log(userState.user.uid)
     // }
+
     async function getAppData(){
-     const statements = await fetch( "https://statementsbe.herokuapp.com/api/statements")
-      .then(res => res.json())
+      if(!userState.user) return;
+      console.log(userState.user.uid)
+     const statements = await fetchStatements(userState.user.uid);
+    //  console.log(statements)
+     
+    //  ( "https://statementsbe.herokuapp.com/api/statements")
+    //   .then(res => res.json())
       setStatement(prevState =>({
         ...prevState,
        showStatement:{
@@ -79,10 +85,9 @@ const [userState, setUserState]= useState({
 
     getAppData()
     // handleShowStatement()
-    auth.onAuthStateChanged(user => setUserState( { user}))
+   const unsubscripe = auth.onAuthStateChanged(user => setUserState( { user}))
 
-  },[])
-
+  },[userState.user])
 
 
 
@@ -110,9 +115,13 @@ const [userState, setUserState]= useState({
     }))
 }
 
-async function handleShowStatement(id){
+async function handleShowStatement(id, uids){
   // console.log(props)
-  const statements = await fetch(`https://statementsbe.herokuapp.com/api/statements/${id}`)
+  let {uid} = userState.user.uid
+  console.log(uid)
+  if(!userState.user.uid) return;
+
+  const statements = await fetch(`https://statementsbe.herokuapp.com/api/statements/${id}?uid=${uid}`)
   .then(res=> res.json())
 setStatement(prevState=> ({
     ...prevState,
@@ -125,14 +134,101 @@ setStatement(prevState=> ({
 }
 
 async function handleDelete(id){
-    const statements = await fetch(`https://statementsbe.herokuapp.com/api/statements/${id}`, {
-        method : "DELETE"
-    }).then(res=> res.json())
+
+  try{
+    const statements = await deleteStatement(id)
     setStatement(prevState=> ({
-        ...prevState,
-        statements
-    }))
+      ...prevState,
+      statements
+  }))
+
+  } catch(error){
+    console.log(error)
+  }
+   
+    
+    // fetch(`https://statementsbe.herokuapp.com/api/statements/${id}`, {
+    //     method : "DELETE"
+    // }).then(res=> res.json())
 }
+
+
+async  function handleSubmit(e){
+
+  e.preventDefault()
+  const {uid} = userState
+
+  if(statement.editMode){
+      const{statementName, volume, fees, transactionsNumber,_id,merchantDebitFees,merchantCreditFees,debitPercentage,creditPercentage,debitInterchange, creditInterchange, basisPts,transactionFee,debitValue,creditValue   } =statement.newStatement
+     try{
+      // updateStatement(newStatement)
+      const editedStatements = await updateStatement(statement.newStatement, userState.user.uid)
+      
+      // fetch(`https://statementsbe.herokuapp.com/api/statements/${_id}`,{
+      //     method:"PUT",
+      //     headers:{
+      //         'Content-type' : "Application/json"
+      //     },
+      //     body:JSON.stringify(statement.newStatement)
+      // }).then(res => res.json() )
+      
+     
+
+      setStatement(prevState=>({
+          ...prevState,
+         statements: editedStatements,
+          editMode: false,
+          newStatement:{
+              statementName: "",volume: "",fees:"",transactionsNumber: "",
+               debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
+               creditPercentage:"",creditInterchange:"",creditCardVolume:"",merchantCreditFees:"",
+               basisPts:"",transactionFee:"",
+               debitValue:"",creditValue:""
+        
+              
+          }
+      }))
+     } catch(err){
+      console.log(err)
+     }
+
+
+  } else {
+      try{
+          // createStatement(statement.newStatement)
+          const statementAdd = await createStatement(statement.newStatement, userState.user.uid)
+          
+          // fetch("https://statementsbe.herokuapp.com/api/statements",{
+          //     method: "POST",
+          //     headers:{
+          //         "Content-type" : "Application/json"
+          //     },
+          //     body:JSON.stringify({...statement.newStatement, uid})
+          // }).then(res=>res.json())
+
+          
+
+          console.log(statementAdd)
+              setStatement({
+                  statements:[...statement.statements, statementAdd],
+                  newStatement:{
+                      statementName: "",volume: "",fees:"",transactionsNumber: "",
+                       debitCardVolume:"",debitInterchange:"", debitPercentage:"", merchantDebitFees: "",
+                       creditPercentage:"",creditInterchange:"",creditCardVolume:"",  merchantCreditFees:"",
+
+                    
+                      basisPts:"",transactionFee:"",    
+                      debitValue:"",creditValue:"",
+                  }
+              })
+
+      } catch(err){
+          console.log(err)
+      }
+  }
+  
+  }
+
 
   return (
 
@@ -146,7 +242,7 @@ async function handleDelete(id){
          
           <Route  path="/ViewStatements" element={<ViewStatements userState={userState} setUserState={setUserState}  handleShowStatement={handleShowStatement}    statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange}/>} />
           <Route  path="/ViewStatements/:id"  handleShowStatement={handleShowStatement} element={<StatementPage userState={userState} setUserState={setUserState}  handleShowStatement={handleShowStatement}  statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange}/>} />
-          <Route  path="/CreateProposal" element={<CreateProposal userState={userState} setUserState={setUserState} statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange} />} />
+          <Route  path="/CreateProposal" element={<CreateProposal userState={userState} setUserState={setUserState} statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleSubmit={handleSubmit} handleDelete={handleDelete}  handleChange={handleChange} />} />
         
         </Routes>
    </>
