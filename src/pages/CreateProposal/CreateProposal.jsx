@@ -165,6 +165,10 @@ function CreateProposal(props) {
                     transaction Interchange Fees
                     <input className={styles.inputs} placeholder="0.12" type="text" name="transactionInterchangeFees"  onChange={handleChange}   value={statement.newStatement.transactionInterchangeFees} />
                 </label>
+                <label className={styles.labels}>
+                    fake one
+                    <input className={styles.inputs} placeholder="0.12" type="text" name="transactionInterchangeFees"  onChange={handleChange}   value={statement.newStatement.transactionInterchangeFees} />
+                </label>
 
                 <button>{statement.editMode ? "edit proposal" : "Create a proposal"}</button>
             </form>

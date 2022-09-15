@@ -66,8 +66,8 @@ const [userState, setUserState]= useState({
 
   useEffect(() => {
     // console.log(statement.showStatement)
-    if(statement.showStatement.statementName)
-      handleShowStatement(statement.statements._id, userState.user.uid)
+    // if(statement.showStatement.statementName)
+    //   handleShowStatement(statement.statements._id, userState.user.uid)
     async function getAppData(){
       if(!userState.user) return;
      const statements = await fetchStatements(userState.user.uid);
