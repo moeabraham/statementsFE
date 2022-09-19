@@ -15,8 +15,10 @@ function StatementPage(props) {
     // console.log(id)
     // console.log(pageData)
     // console.log(props.statement.showStatement)
+    // console.log(props)
+    // console.log(id)
     const {showStatement} = props.statement;
-    console.log(showStatement.transactionInterchangeFees)
+    // console.log(showStatement)
     // console.log((showStatement.debitPercentage *showStatement.volume )/100)
     let debitCardVolume = (showStatement.debitPercentage/100) * (showStatement.volume);
     // let merchantDebitFees = (((showStatement.debitInterchange)/(100)) * (debitCardVolume))

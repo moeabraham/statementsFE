@@ -13,6 +13,8 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useNavigate
+  
   // Link,
   // BrowserRouter
 } from "react-router-dom";
@@ -20,6 +22,8 @@ import {
 import {fetchStatements, createStatement, updateStatement, deleteStatement} from "./services/ApiServices"
 
 function App(props) {
+  const navigate = useNavigate();
+
   const [statement, setStatement] = useState({
 
     statements: [{
@@ -126,6 +130,7 @@ async function handleShowStatement(id, uids){
   .then(res=> res.json())
 setStatement(prevState=> ({
     ...prevState,
+    // ...statements,
     showStatement:statements   
     
 }))
@@ -208,7 +213,7 @@ async  function handleSubmit(e){
 
           
 
-          console.log(statementAdd)
+          // console.log(statementAdd)
               setStatement({
                   statements:[...statement.statements, statementAdd],
                   newStatement:{
@@ -228,7 +233,8 @@ async  function handleSubmit(e){
           console.log(err)
       }
   }
-  
+  navigate('/ViewStatements');
+
   }
 
 
@@ -243,7 +249,7 @@ async  function handleSubmit(e){
           <Route  path="/" element={<Landing />} />
          
           <Route  path="/ViewStatements" element={<ViewStatements userState={userState} setUserState={setUserState}  handleShowStatement={handleShowStatement}    statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange}/>} />
-          <Route  path="/ViewStatements/:id"  handleShowStatement={handleShowStatement} element={<StatementPage userState={userState} setUserState={setUserState}  handleShowStatement={handleShowStatement}  statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange}/>} />
+          <Route  path="/ViewStatements/:id"  handleShowStatement={handleShowStatement} element={<StatementPage userState={userState} setUserState={setUserState}  handleShowStatement={handleShowStatement}  statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleDelete={handleDelete}  handleChange={handleChange} ss={statement.statement}/>} />
           <Route  path="/CreateProposal" element={<CreateProposal userState={userState} setUserState={setUserState} statement={statement} setStatement={setStatement} handleEdit={handleEdit} handleSubmit={handleSubmit} handleDelete={handleDelete}  handleChange={handleChange} />} />
         
         </Routes>

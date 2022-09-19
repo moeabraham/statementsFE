@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/Header/Header';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {FcPlus} from "react-icons/fc";
 import {FcBriefcase} from "react-icons/fc";
 
@@ -13,11 +13,12 @@ import {useState} from 'react';
 import {createStatement, updateStatement} from "../../services/ApiServices";
 
 function CreateProposal(props) {
+    const navigate = useNavigate();
 
         const{statement, setStatement, handleEdit, handleDelete, handleChange,handleSubmit, userState, setUserState, handleShowStatement} =  props
         const{ newStatement, statements, editMode,} = statement
 
-       console.log(statement.statements)
+    //    console.log(statement.statements[statements.length -1 ])
 //   async  function handleSubmit(e){
 
 //     e.preventDefault()
@@ -177,7 +178,7 @@ function CreateProposal(props) {
             {props.statement.statements ?
             statement.statements.map((s,i) => (
 
-                <Link handleShowStatement={handleShowStatement} to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i}  >
+                <Link handleShowStatement={handleShowStatement} ss={statement.statements[statements.length -1]} to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i}  >
                     <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
                         <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3 className={styles.fonts}> {s.statementName}</h3></article>
                         <article className={styles.innerCard} > <h3 className={styles.fonts}>Total: </h3><h3 className={styles.fonts}>{s.volume}</h3></article>

@@ -9,12 +9,15 @@ import {FcPlus} from 'react-icons/fc';
 import {FcDocument} from "react-icons/fc";
 import {FcRemoveImage} from "react-icons/fc";
 import { useParams } from 'react-router-dom';
+
 function ViewStatements(props) {
 
 //    console.log(props.statement)
-      const {statement, handleEdit, handleDelete, handleShowStatement} = props
-      console.log(statement)
-      // console.log(props.statement.showStatement)
+      const {statement, handleEdit, handleDelete, handleShowStatement,ss} = props
+      // console.log(props.ss)
+      const {id} = useParams();
+
+      // console.log(id)
     //   const {id} = useParams()
     // console.log(statement)
     //   console.log(id)
@@ -58,7 +61,7 @@ function ViewStatements(props) {
     props.statement.statements.map((s,i) => (
         <>
        <section className={styles.wholeCards}  key={i}>
-    <Link to={`/viewStatements/${s._id}`}  className={styles.statementLink}>
+    <Link to={`/viewStatements/${s._id}`  } handleShowStatement={statement.statements}  className={styles.statementLink}>
         <figure className={styles.card} onClick={()=> handleShowStatement(s._id)} >
                 <article className={styles.innerCard}  ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
                 <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
