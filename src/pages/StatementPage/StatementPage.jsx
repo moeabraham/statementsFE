@@ -5,6 +5,8 @@ import {FcDepartment} from "react-icons/fc";
 // import  { useEffect} from "react";
 import {Link} from "react-router-dom"
 function StatementPage(props) {
+
+
     const {id} = useParams();
     // const[pageData, setPageData] = useState({
     //     pageData: props.statement.showStatement
@@ -18,6 +20,11 @@ function StatementPage(props) {
     // console.log(props)
     // console.log(id)
     const {showStatement} = props.statement;
+    
+    // localStorage.setItem('showStatement', JSON.stringify(statementAdd))
+    const items = JSON.parse(localStorage.getItem("showStatement"))
+    console.log(items)
+
     // console.log(showStatement)
     // console.log((showStatement.debitPercentage *showStatement.volume )/100)
     let debitCardVolume = (showStatement.debitPercentage/100) * (showStatement.volume);
@@ -49,13 +56,14 @@ function StatementPage(props) {
     // console.log(merchantCreditFees)
     // console.log(((showStatement.creditInterchange)/(100)))
     // console.log(creditCardVolume)
-
 const[thisPage, setThisPage] = useState({
 
 })
 
   return (
     <>
+
+    {items ? <> {console.log("items", items)}</> : <>{console.log("kosomak")} </>}
     {/* {console.log(showStatement)} */}
     {/* thisPage={thisPage} settingThePage = {settingThePage} */}
         <h1 className={styles.headerTitle}>{props.statement.showStatement.statementName}</h1>

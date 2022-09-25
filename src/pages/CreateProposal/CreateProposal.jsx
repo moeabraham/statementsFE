@@ -17,7 +17,7 @@ function CreateProposal(props) {
 
         const{statement, setStatement, handleEdit, handleDelete, handleChange,handleSubmit, userState, setUserState, handleShowStatement} =  props
         const{ newStatement, statements, editMode,} = statement
-
+// console.log(handleShowStatement)
     //    console.log(statement.statements[statements.length -1 ])
 //   async  function handleSubmit(e){
 
@@ -108,67 +108,111 @@ function CreateProposal(props) {
                 <label className={styles.labels}>
                     Name
                     <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
+
                 </label>
 
                 <label className={styles.labels}>
                     total volume
                     <input  className={styles.inputs} type="text" name="volume"  onChange={handleChange} value={statement.newStatement.volume} />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
+
                 $
                 </label>
-
+               
                 <label className={styles.labels}>
-                    current fee
+                    current fees
                     <input className={styles.inputs} placeholder="200 300.." type="text" name="fees" onChange={handleChange}  value={statement.newStatement.fees}   />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
+
                 $
                 </label>
 
                 <label className={styles.labels}>
                     transaction number
                     <input className={styles.inputs} type="text" name="transactionsNumber"  onChange={handleChange}   value={statement.newStatement.transactionsNumber} />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
+
                 </label>
+
+
+                {/* <label className={styles.labels}>
+                    test
+                    <input  className={styles.inputs} type="text" name="volume"  onChange={handleChange} value={((statement.newStatement.fees) / (statement.newStatement.volume)*100).toFixed(2)} />
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+
+                $
+                </label> */}
+
+
+
 
                 <label className={styles.labels}>
                     Debit Card percentage
                     <input className={styles.inputs} placeholder="60 or 40..." type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
-                %
+                    debit card volume
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={(statement.newStatement.debitPercentage/100) * (statement.newStatement.volume)}  />
+
+                $
                  </label>
-
-                <label className={styles.labels}>
-                     Debit Interchange
-                    <input className={styles.inputs} placeholder="0.6" type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
-                %
-                </label>
-
-                <label className={styles.labels}>
+                 {/* <label className={styles.labels}>
                     Credit Card percentage
                     
                     <input className={styles.inputs} placeholder="60 or 40.." type="text" name="creditPercentage" onChange={handleChange}  value={statement.newStatement.creditPercentage}  /> 
                 %
+                </label> */}
+                <label className={styles.labels}>
+                    Credit Card percentage
+                    
+                    <input className={styles.inputs} placeholder="60 or 40.." type="text" name="creditPercentage" onChange={handleChange}  value={(100)-(statement.newStatement.debitPercentage)}  />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
+ 
+                %
                 </label>
+
+                <label className={styles.labels}>
+                     Debit Interchange
+                    <input className={styles.inputs} placeholder="0.6" type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+
+                %
+                </label>
+
+                
 
                 <label className={styles.labels}>
                     Credit Interchange
                     <input  className={styles.inputs} placeholder="1.90" type="text" name="creditInterchange"  onChange={handleChange} value={statement.newStatement.creditFees} />
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+
                 %
                 </label>
 
                 <label className={styles.labels}>
                     Basis Pts:
                     <input className={styles.inputs} placeholder="0.10" type="text" name="basisPts" onChange={handleChange}  value={statement.newStatement.basisPts}   />
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+
                 %
                 </label>
 
                 <label className={styles.labels}>
                     transaction Fees
                     <input className={styles.inputs} placeholder="0.10" type="text" name="transactionFee"  onChange={handleChange}   value={statement.newStatement.transactionFee} />
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+
                 </label>
                 <label className={styles.labels}>
                     transaction Interchange Fees
                     <input className={styles.inputs} placeholder="0.12" type="text" name="transactionInterchangeFees"  onChange={handleChange}   value={statement.newStatement.transactionInterchangeFees} />
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+
                 </label>
                 <label className={styles.labels}>
                     fake one
                     <input className={styles.inputs} placeholder="0.12" type="text" name="transactionInterchangeFees"  onChange={handleChange}   value={statement.newStatement.transactionInterchangeFees} />
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+
                 </label>
 
                 <button>{statement.editMode ? "edit proposal" : "Create a proposal"}</button>

@@ -212,4 +212,34 @@ color:#5ab947;
             /* flex-direction: column; */
         }
 
+        .form{
+            display:flex;
+            flex-direction:column;
+            width:90vw;
+            padding: 1rem;
+            gap:1rem;
+            /* align-items:center;
+            align-self:center;
+            justify-content:center; */
+        }
+        .labels{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            align-self: center;
+            /* width:100%; */
+            /* background-color: red; */
+            /* flex-grow: 1; */
+
+        }
+
+        .inputs{
+            display: flex;
+            /* background-color: blue; */
+            justify-content: center;
+            align-items: center;
+            margin: auto 0;
+            align-self:center;
+        }
+
     }

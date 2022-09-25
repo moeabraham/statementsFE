@@ -61,7 +61,8 @@ function ViewStatements(props) {
     props.statement.statements.map((s,i) => (
         <>
        <section className={styles.wholeCards}  key={i}>
-    <Link to={`/viewStatements/${s._id}`  } handleShowStatement={statement.statements}  className={styles.statementLink}>
+        {/* handleShowStatement={statement.statements} */}
+    <Link to={`/viewStatements/${s._id}`  }   className={styles.statementLink}>
         <figure className={styles.card} onClick={()=> handleShowStatement(s._id)} >
                 <article className={styles.innerCard}  ><h3 className={styles.fonts}>Statement Name : </h3><h3> {s.statementName}</h3></article>
                 <article className={styles.innerCard} > <h3>Total: </h3><h3>{s.volume}</h3></article>
