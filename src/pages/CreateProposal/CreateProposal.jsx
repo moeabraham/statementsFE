@@ -150,10 +150,10 @@ function CreateProposal(props) {
                 <label className={styles.labels}>
                     Debit Card percentage
                     <input className={styles.inputs} placeholder="60 or 40..." type="text" name="debitPercentage" onChange={handleChange}  value={statement.newStatement.debitPercentage}  />
-                    debit card volume
-                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={(statement.newStatement.debitPercentage/100) * (statement.newStatement.volume)}  />
+                    {/* debit card volume
+                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={(statement.newStatement.debitPercentage/100) * (statement.newStatement.volume)}  /> */}
 
-                $
+                %
                  </label>
                  {/* <label className={styles.labels}>
                     Credit Card percentage
@@ -173,7 +173,7 @@ function CreateProposal(props) {
                 <label className={styles.labels}>
                      Debit Interchange
                     <input className={styles.inputs} placeholder="0.6" type="text" name="debitInterchange" onChange={handleChange}  value={statement.newStatement.debitInterchange}  />
-                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
 
                 %
                 </label>
@@ -182,8 +182,8 @@ function CreateProposal(props) {
 
                 <label className={styles.labels}>
                     Credit Interchange
-                    <input  className={styles.inputs} placeholder="1.90" type="text" name="creditInterchange"  onChange={handleChange} value={statement.newStatement.creditFees} />
-                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+                    <input  className={styles.inputs} placeholder="1.90" type="text" name="creditInterchange"  onChange={handleChange} value={statement.newStatement.creditInterchange} />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
 
                 %
                 </label>
@@ -191,7 +191,7 @@ function CreateProposal(props) {
                 <label className={styles.labels}>
                     Basis Pts:
                     <input className={styles.inputs} placeholder="0.10" type="text" name="basisPts" onChange={handleChange}  value={statement.newStatement.basisPts}   />
-                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
 
                 %
                 </label>
@@ -199,19 +199,19 @@ function CreateProposal(props) {
                 <label className={styles.labels}>
                     transaction Fees
                     <input className={styles.inputs} placeholder="0.10" type="text" name="transactionFee"  onChange={handleChange}   value={statement.newStatement.transactionFee} />
-                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
 
                 </label>
                 <label className={styles.labels}>
                     transaction Interchange Fees
                     <input className={styles.inputs} placeholder="0.12" type="text" name="transactionInterchangeFees"  onChange={handleChange}   value={statement.newStatement.transactionInterchangeFees} />
-                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
 
                 </label>
                 <label className={styles.labels}>
                     fake one
                     <input className={styles.inputs} placeholder="0.12" type="text" name="transactionInterchangeFees"  onChange={handleChange}   value={statement.newStatement.transactionInterchangeFees} />
-                    <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  />
+                    {/* <input className={styles.inputs}  type="text" name="statementName" onChange={handleChange}  value={statement.newStatement.statementName}  /> */}
 
                 </label>
 
@@ -221,7 +221,8 @@ function CreateProposal(props) {
         <section className={styles.showcase}>
             {props.statement.statements ?
             statement.statements.map((s,i) => (
-
+<>
+<article className={styles.wholeCard}>
                 <Link handleShowStatement={handleShowStatement} ss={statement.statements[statements.length -1]} to={`/viewStatements/${s._id}`} className={styles.statementLink} key={i}  >
                     <figure className={styles.card} onClick={()=> handleShowStatement(s._id)}>
                         <article className={styles.innerCard} ><h3 className={styles.fonts}>Statement Name : </h3><h3 className={styles.fonts}> {s.statementName}</h3></article>
@@ -229,8 +230,17 @@ function CreateProposal(props) {
                         <article className={styles.innerCard}> <h3 className={styles.fonts}>Transactions Numbers: </h3><h3 className={styles.fonts}>{s.transactionsNumber}</h3> </article>   
                         <article className={styles.innerCard}><h3 className={styles.fonts}>Current Fee: </h3> <h3 className={styles.fonts}>{s.fees}</h3> </article>   
                     </figure>
+                   
+
                 </Link>
 
+                <div className={styles.icons} key={s._id}>
+        <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
+        <div onClick={()=> handleDelete(s._id)} ><FcRemoveImage style={{width:"50px", height:"30px"}}/></div> 
+</div> 
+</article>
+
+                </>
                                     )) :
                     <article>nothing</article>}
         </section>
@@ -241,3 +251,4 @@ function CreateProposal(props) {
 }
 
 export default CreateProposal
+

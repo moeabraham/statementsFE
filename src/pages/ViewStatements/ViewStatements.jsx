@@ -9,7 +9,6 @@ import {FcPlus} from 'react-icons/fc';
 import {FcDocument} from "react-icons/fc";
 import {FcRemoveImage} from "react-icons/fc";
 import { useParams } from 'react-router-dom';
-
 function ViewStatements(props) {
 
 //    console.log(props.statement)
@@ -54,7 +53,7 @@ function ViewStatements(props) {
    {/* {console.log(statement.statements)}   */}
   
    <section className={styles.container}>
-   <Link to="/CreateProposal" ><div className={styles.links}><FcPlus style={{height:"40px",width:"50px"}} /></div></Link>
+   <Link to="/CreateProposal" > <div className={styles.links}><FcPlus style={{height:"40px",width:"50px"}} />Create Proposal </div></Link>
     <article className={styles.cards}>
      {props.statement.statements ?
      
@@ -73,11 +72,11 @@ function ViewStatements(props) {
         
     </Link>
 
-        <div className={styles.icons} key={s._id}>
-                    <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
-                    <div onClick={()=> handleDelete(s._id)} ><FcRemoveImage style={{width:"50px", height:"30px"}}/></div> 
-                </div>
-
+          {/* <div className={styles.icons} key={s._id}>
+              <div onClick={()=> handleEdit(s._id)}><FcDocument style={{width:"50px", height:"30px"}}/><span></span></div> 
+              <div onClick={()=> handleDelete(s._id)} ><FcRemoveImage style={{width:"50px", height:"30px"}}/></div> 
+          </div> */}
+{/* <Crud handleEdit={handleEdit} /> */}
 
                 </section>
                 </>

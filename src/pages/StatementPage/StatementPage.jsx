@@ -67,7 +67,7 @@ const[thisPage, setThisPage] = useState({
     {/* {console.log(showStatement)} */}
     {/* thisPage={thisPage} settingThePage = {settingThePage} */}
         <h1 className={styles.headerTitle}>{props.statement.showStatement.statementName}</h1>
-       <Link to="/"   >  <FcDepartment style={{width:"60px", height:"50px"}}/></Link>
+       {/* <Link to="/" >Home  <FcDepartment style={{width:"60px", height:"50px"}}/></Link> */}
  <section className={styles.container}>
 <figure className={styles.mainCard}  >
     <section className={styles.half}>

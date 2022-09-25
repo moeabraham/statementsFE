@@ -41,7 +41,7 @@ function App(props) {
     newStatement:{
       statementName: "", volume: "",fees:"",transactionsNumber: "",
       debitCardVolume:"",  debitPercentage:"",  debitInterchange:"0.6",merchantDebitFees: "",
-      creditPercentage:"",creditInterchange:"0.0190",creditCardVolume:"",merchantCreditFees:"",
+      creditPercentage:"",creditInterchange:"1.90",creditCardVolume:"",merchantCreditFees:"",
 
       basisPts:"0.20 ",transactionFee:"0.10",
       debitValue:"",creditValue:"",
@@ -51,8 +51,8 @@ function App(props) {
     },
     showStatement:{
       statementName: "", volume: "",fees:"",transactionsNumber: "",
-    debitCardVolume:"",  debitPercentage:"",  debitInterchange:"0.06",merchantDebitFees: "",
-    creditPercentage:"",creditInterchange:"0.0190",creditCardVolume:"",merchantCreditFees:"",
+    debitCardVolume:"",  debitPercentage:"",  debitInterchange:"0.6",merchantDebitFees: "",
+    creditPercentage:"",creditInterchange:"1.90",creditCardVolume:"",merchantCreditFees:"",
 
     basisPts:"0.20 ",transactionFee:"0.10",
     debitValue:"",creditValue:"",

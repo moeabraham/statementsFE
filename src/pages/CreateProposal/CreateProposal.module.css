@@ -45,7 +45,10 @@
     height:60px;
     width:40px;
     margin:0 auto;
-    
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight:600;
+
     /* margin-right:2rem; */
     /* align-self: center; */
     /* margin: 1rem auto; */
@@ -132,6 +135,14 @@ color:#5ab947;
     /* flex-grow:1; */
     flex-wrap:wrap;
     /* background-color:red; */
+
+}
+
+.wholeCard{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -241,5 +252,8 @@ color:#5ab947;
             margin: auto 0;
             align-self:center;
         }
-
+        .wholeCard{
+            display:flex;
+            flex-direction:column;
+        }
     }
