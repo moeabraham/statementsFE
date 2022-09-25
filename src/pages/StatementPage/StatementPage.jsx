@@ -23,7 +23,7 @@ function StatementPage(props) {
     
     // localStorage.setItem('showStatement', JSON.stringify(statementAdd))
     const items = JSON.parse(localStorage.getItem("showStatement"))
-    console.log(items)
+    // console.log(items)
 
     // console.log(showStatement)
     // console.log((showStatement.debitPercentage *showStatement.volume )/100)
@@ -63,7 +63,7 @@ const[thisPage, setThisPage] = useState({
   return (
     <>
 
-    {items ? <> {console.log("items", items)}</> : <>{console.log("kosomak")} </>}
+    {/* {items ? <> {console.log("items", items)}</> : <>{console.log("kosomak")} </>} */}
     {/* {console.log(showStatement)} */}
     {/* thisPage={thisPage} settingThePage = {settingThePage} */}
         <h1 className={styles.headerTitle}>{props.statement.showStatement.statementName}</h1>

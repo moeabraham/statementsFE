@@ -66,36 +66,37 @@ function App(props) {
 const [userState, setUserState]= useState({
   user: null
 })
-
+// console.log(userState.user.uid)
 
   useEffect(() => {
 
     const items = JSON.parse(localStorage.getItem("showStatement"))
-    console.log(items)
-    if (items) setStatement(prevState =>({
-      ...prevState,
-     showStatement: items
-    }))
+    // console.log(items)
+    // if (items) setStatement(prevState =>({
+    //   ...prevState,
+    //  showStatement: items
+    // }))
     // console.log(items)
     // if(statement.showStatement.statementName)
     //   handleShowStatement(statement.statements._id, userState.user.uid)
     async function getAppData(){
-      console.log(JSON.parse(localStorage.getItem('showStatement')))
+      // console.log(JSON.parse(localStorage.getItem('showStatement')))
 
       if(!userState.user) return;
      const statements = await fetchStatements(userState.user.uid);
 
       setStatement(prevState =>({
         ...prevState,
-       showStatement:{
-        ...prevState,
-        ...statement.showStatement
+      //  showStatement:{
+      //   ...prevState,
+      //   ...statement.showStatement
         
-       },
+      //  },
+      showStatement: items ? items : [],
          statements
       }))
 
-      console.log(statement.statements)
+      // console.log(statement.statements)
      
     }
 
@@ -152,10 +153,11 @@ setStatement(prevState=> ({
 
 }
 
-async function handleDelete(id){
+async function handleDelete(id,uid){
   if(!userState.user) return;
-  const statements = await deleteStatement(id, userState.uid)
-  statements ? console.log(statements) : console.log("no")
+  console.log(userState.uid)
+  const statements = await deleteStatement(id, userState.user.uid)
+  // statements ? console.log(statements) : console.log("no")
   try{
     console.log(statements)
     setStatement(prevState=> ({
@@ -220,7 +222,7 @@ async  function handleSubmit(e){
           if (statementAdd) localStorage.setItem('showStatement', JSON.stringify(statementAdd))
 
           // console.log(showStatement)
-          console.log(JSON.parse(localStorage.getItem('showStatement')))
+          // console.log(JSON.parse(localStorage.getItem('showStatement')))
         
           // fetch("https://statementsbe.herokuapp.com/api/statements",{
           //     method: "POST",
