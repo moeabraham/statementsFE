@@ -20,8 +20,17 @@
     justify-content: center;
     align-items:center;
 }
-/*  */
+.disclaimer{
+    display:flex;
+    text-align: center;
+    justify-content:center;
+    width:100vw;
+    color:white;
+    font-family: 'Poppins', sans-serif;
+    font-weight:700;
+        background-color:red;
 
+}
 .headers{
     display:flex;
     font-size: 1.2rem;

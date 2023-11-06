@@ -34,7 +34,7 @@ function App(props) {
        debitValue:"",creditValue:"",
        transactionInterchangeFees:"",
 
-    
+     
   
     }],
 

@@ -11,6 +11,8 @@ import {Link} from 'react-router-dom';
 function LandingPage(props) {
   return (
     <div>
+        <div className={styles.disclaimer}>This was created to help calculate the merchant processing fees for my clients!!</div>
+
         <Link className={styles.container} to='viewstatements'>
         <article className={styles.viewArticle}>
             <figure className={styles.figCard}>
@@ -21,7 +23,6 @@ function LandingPage(props) {
         </article>
         </Link>
         <div>
-
         </div>
         <Link className={styles.container} to='createproposal'>
         <article className={styles.viewArticle}>
